@@ -1,0 +1,71 @@
+/* ==========================================================================
+   CSS VARIABLES - DOUBLE DIAMOND MOVING
+   Update these values to instantly style the entire site.
+   ========================================================================== */
+
+:root {
+  /* --- BRAND COLORS --- */
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  /* --- NEUTRAL & ACCENT TONES --- */
+  --color-gray-50: #f9f9f9;
+  --color-gray-100: #e0e0e0;
+  --color-gray-500: #7a7a7a;
+  --color-gray-800: #1a1a1a;
+  --color-gray-900: #0f0f0f;
+  
+  /* Text Colors */
+  --text-primary: var(--color-white);
+  --text-secondary: var(--color-gray-100);
+  --text-inverse: var(--color-black);
+  
+  /* Background Colors */
+  --bg-primary: var(--color-black);
+  --bg-secondary: var(--color-gray-900);
+  --bg-inverse: var(--color-white);
+
+  /* --- GLASSMORPHISM / OVERLAYS --- */
+  --glass-bg: rgba(0, 0, 0, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 12px;
+  
+  /* --- TYPOGRAPHY --- */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: 'Outfit', 'Inter', -apple-system, sans-serif;
+  
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 3rem;
+  --text-4xl: 4rem;
+
+  /* --- SPACING & SIZING --- */
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  
+  /* --- BORDER RADIUS --- */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 32px;
+  --radius-pill: 9999px;
+
+  /* --- Z-INDEX --- */
+  --z-nav: 1000;
+  --z-modal: 2000;
+  --z-overlay: 500;
+  
+  /* --- TRANSITIONS --- */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}

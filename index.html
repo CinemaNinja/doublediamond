@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Double Diamond | Premium Moving & Storage Professionals</title>
+    
+    <!-- SEO & META -->
+    <meta name="description" content="Expert logistics, moving, and storage services for Aspen, Colorado and the Roaring Fork Valley. Specializing in services for Interior Designers.">
+    
+    <!-- CSS IMPORTS -->
+    <!-- The Variables file controls colors, fonts, and spacing -->
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <!-- The Styles file contains layout and components that use the variables -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Advanced Cinematic Animations -->
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body class="loading-lock">
+
+    <!-- =======================================================================
+         CINEMATIC EFFECTS & UI ELEMENTS
+         ======================================================================= -->
+    <div id="preloader">
+        <div class="double-diamond-loader">
+            <div class="diamond d1"></div>
+            <div class="diamond d2"></div>
+        </div>
+    </div>
+    <div class="noise-overlay"></div>
+    <div id="custom-cursor"></div>
+
+    <!-- =======================================================================
+         NAVIGATION COMPONENT
+         Contains the Logo, Service Anchors, and the Customer Login Button.
+         Sticky navigation using glassmorphism.
+         ======================================================================= -->
+    <nav class="site-nav">
+        <div class="container nav-container">
+            <!-- LOGO / HOME LINK -->
+            <a href="#" class="logo text-gradient magnetic">Double Diamond</a>
+            
+            <!-- DESKTOP LINKS -->
+            <ul class="nav-links">
+                <li><a href="#services" class="magnetic">Services</a></li>
+                <li><a href="#about" class="magnetic">About</a></li>
+                <li><a href="#contact" class="magnetic">Contact</a></li>
+                <!-- CUSTOMER LOGIN - HIGHLY VISIBLE PORTAL LINK -->
+                <li><a href="https://www.doublediamondmoving.com/customer-login" class="btn btn-primary magnetic" target="_blank" rel="noopener noreferrer">Customer Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- =======================================================================
+         HERO SECTION
+         Bypasses old splash screen. Cinematic video background.
+         ======================================================================= -->
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-video-wrapper">
+                <!-- HERO VIDEO ASSET -->
+                <!-- Designer Note: Update the 'src' value below to change the background video -->
+                <video class="hero-video" autoplay loop muted playsinline>
+                    <source src="./DD_ASSETS/DD_SEASON_3.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <!-- Overlay to ensure text readability against the video -->
+            <div class="hero-overlay"></div>
+            
+            <div class="hero-content">
+                <h1 class="text-gradient">Moving & Storage Professionals</h1>
+                <p>Providing Aspen and the Roaring Fork Valley with Expert Logistics Services since 2009.</p>
+                <div style="display: flex; gap: var(--space-4); justify-content: center;">
+                    <a href="#services" class="btn btn-primary magnetic">Our Services</a>
+                    <a href="#contact" class="btn btn-outline magnetic">Contact Us</a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =======================================================================
+             SERVICES GRID
+             Grid layout detailing all service offerings.
+             ======================================================================= -->
+        <section id="services" class="section services-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Our Services</h2>
+                    <p>Meticulous care for your most valuable assets.</p>
+                </div>
+                
+                <div class="services-grid">
+                    
+                    <!-- SERVICE: INTERIOR DESIGNERS -->
+                    <div class="service-card reveal" style="background-image: url('./DD_ASSETS/original_site/warehouse-receiving.jpg'); background-size: cover; background-position: center;">
+                        <div class="service-icon">✨</div>
+                        <div class="service-card-content">
+                            <h3>Interior Designers</h3>
+                            <p>Warehouse Receiving, Full Detailed Inspections, Digital Photos, Temperature Controlled Storage, Online Inventory System, and Full Custom Installations.</p>
+                        </div>
+                    </div>
+
+                    <!-- SERVICE: MOVING -->
+                    <div class="service-card reveal" style="background-image: url('./DD_ASSETS/original_site/movingbanner1.jpg'); background-size: cover; background-position: center;">
+                        <div class="service-icon">📦</div>
+                        <div class="service-card-content">
+                            <h3>Moving</h3>
+                            <p>Household, Commercial, Packing, Unpacking, Furniture Disassembly and Assembly, Baby Grand Pianos, Safes. We exceed expectations.</p>
+                        </div>
+                    </div>
+
+                    <!-- SERVICE: STORAGE -->
+                    <div class="service-card reveal" style="background-image: url('./DD_ASSETS/original_site/vault-forklift.jpg'); background-size: cover; background-position: center;">
+                        <div class="service-icon">🔒</div>
+                        <div class="service-card-content">
+                            <h3>Storage</h3>
+                            <p>Temperature Controlled, Meticulously Inventoried & maintained, Secure Storage. Including an outdoor secure lot for vehicles, boats & campers in Carbondale.</p>
+                        </div>
+                    </div>
+
+                    <!-- SERVICE: BUILDING MATERIALS -->
+                    <div class="service-card reveal" style="background-image: url('./DD_ASSETS/original_site/building-material-handling.jpg'); background-size: cover; background-position: center;">
+                        <div class="service-icon">🏗️</div>
+                        <div class="service-card-content">
+                            <h3>Building Materials</h3>
+                            <p>Receiving, Warehousing and Delivery of building material including windows, cabinets and flooring. Let us help Contractors meet their deadlines.</p>
+                        </div>
+                    </div>
+
+                    <!-- SERVICE: ART HANDLING -->
+                    <div class="service-card reveal" style="background-image: url('./DD_ASSETS/original_site/arthandling.jpg'); background-size: cover; background-position: center;">
+                        <div class="service-icon">🖼️</div>
+                        <div class="service-card-content">
+                            <h3>Art Handling</h3>
+                            <p>One piece to complete exhibits & collections. Warehouse receiving, secure temperature controlled storage, custom crating, shipping and installation.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =======================================================================
+             ABOUT SECTION
+             Highlights founder information and operating regions.
+             ======================================================================= -->
+        <section id="about" class="section about-section" style="background-image: url('./DD_ASSETS/original_site/1900-Dolores-Warehouse.png'); background-size: cover; background-position: center; background-attachment: fixed;">
+            <div class="container relative-z">
+                <div class="about-grid reveal">
+                    <div class="about-text">
+                        <h2 class="text-gradient">Colorado's Expert Logistics</h2>
+                        <p>Located just 30 miles from Aspen, Colorado and a 2nd location 35 miles from Vail, Colorado, we service the State of Colorado including the Ski Towns and provide Colorado based services for businesses and individuals throughout the United States and Overseas.</p>
+                        
+                        <div class="about-features">
+                            <div class="feature-item">
+                                <h4>Established</h4>
+                                <p>2009</p>
+                            </div>
+                            <div class="feature-item">
+                                <h4>Founders</h4>
+                                <p>Zak Fishkin & Lupe Sanchez</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- =======================================================================
+         FOOTER / CONTACT INFO
+         Address, Phone, and Email Data.
+         ======================================================================= -->
+    <footer id="contact" class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div class="footer-col">
+                    <a href="#" class="logo">Double Diamond</a>
+                    <p style="margin-top: var(--space-4);">Premium Moving & Storage Professionals.</p>
+                </div>
+                
+                <!-- CONTACT DETAILS -->
+                <!-- Designer Note: Update phone or email here -->
+                <div class="footer-col">
+                    <h4>Contact Owner</h4>
+                    <p>Zak Fishkin</p>
+                    <a href="tel:9709273770">(970) 927-3770</a>
+                    <a href="mailto:info@doublediamondmoving.com">info@doublediamondmoving.com</a>
+                </div>
+                
+                <!-- LOCATIONS & MAPS -->
+                <div class="footer-col" style="grid-column: span 2;">
+                    <h4>Locations</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); margin-top: var(--space-4);">
+                        
+                        <!-- MAP: CARBONDALE -->
+                        <div>
+                            <p style="margin-bottom: var(--space-4);">1900 Dolores Way<br>Carbondale, CO 81623</p>
+                            <div class="map-container">
+                                <iframe src="https://maps.google.com/maps?q=1900%20Dolores%20Way,%20Carbondale,%20CO%2081623&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                            </div>
+                        </div>
+
+                        <!-- MAP: GYPSUM -->
+                        <div>
+                            <p style="margin-bottom: var(--space-4);">543 Gilder Way<br>Gypsum, CO 81637</p>
+                            <div class="map-container">
+                                <iframe src="https://maps.google.com/maps?q=543%20Gilder%20Way,%20Gypsum,%20CO%2081637&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- PORTAL -->
+                <div class="footer-col" style="display: flex; flex-direction: column; align-items: flex-start;">
+                    <h4>Client Portal</h4>
+                    <p style="margin-bottom: var(--space-4);">Existing clients can manage their inventory securely.</p>
+                    <a href="https://www.doublediamondmoving.com/customer-login" class="btn btn-primary magnetic" target="_blank" rel="noopener noreferrer">Access Inventory System</a>
+                </div>
+
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Double Diamond Moving & Storage. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT IMPORT -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/animations.js"></script>
+</body>
+</html>

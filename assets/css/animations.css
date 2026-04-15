@@ -1,0 +1,168 @@
+/* ==========================================================================
+   ADVANCED ANIMATIONS & EFFECTS - DOUBLE DIAMOND
+   Handles Preloader, Cursor, Cinematic Noise, and Holographic Glass.
+   ========================================================================== */
+
+/* --- 1. PRELOADER (THE DIAMOND SHATTER) --- */
+.loading-lock {
+  overflow: hidden;
+  height: 100vh;
+}
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-black);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.double-diamond-loader {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.diamond {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--color-white);
+  transform: rotate(45deg);
+  opacity: 0;
+}
+
+.diamond.d1 {
+  left: 0;
+  animation: pulseLeft 2.5s cubic-bezier(0.1, 0.7, 0.1, 1) infinite;
+}
+
+.diamond.d2 {
+  right: 0;
+  animation: pulseRight 2.5s cubic-bezier(0.1, 0.7, 0.1, 1) infinite;
+  animation-delay: 0.2s;
+}
+
+@keyframes pulseLeft {
+  0% { transform: rotate(45deg) translateX(-20px) scale(0.5); opacity: 0; }
+  30% { transform: rotate(45deg) translateX(0) scale(1); opacity: 1; box-shadow: inset 0 0 10px rgba(255,255,255,0.5), 0 0 10px rgba(255,255,255,0.5); }
+  60% { transform: rotate(45deg) translateX(-10px) scale(0.9); opacity: 0.8; }
+  100% { transform: rotate(45deg) translateX(20px) scale(1.1); opacity: 0; }
+}
+
+@keyframes pulseRight {
+  0% { transform: rotate(45deg) translateY(-20px) scale(0.5); opacity: 0; }
+  30% { transform: rotate(45deg) translateY(0) scale(1); opacity: 1; box-shadow: inset 0 0 10px rgba(255,255,255,0.5), 0 0 10px rgba(255,255,255,0.5); }
+  60% { transform: rotate(45deg) translateY(-10px) scale(0.9); opacity: 0.8; }
+  100% { transform: rotate(45deg) translateY(20px) scale(1.1); opacity: 0; }
+}
+
+#preloader.loaded {
+  opacity: 0;
+  transform: scale(1.1); /* Cinematic zoom out */
+  pointer-events: none;
+}
+
+/* --- 2. CINEMATIC NOISE OVERLAY --- */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* --- 3. CUSTOM BLEND-MODE CURSOR --- */
+body {
+  /* cursor: none; Optional: Hides default cursor. Enable if desired */
+}
+
+#custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-white);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+  transform: translate3d(0, 0, 0);
+  margin-top: -8px; 
+  margin-left: -8px;
+  transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease, background-color 0.3s ease;
+  will-change: transform;
+}
+
+#custom-cursor.hover {
+  width: 64px;
+  height: 64px;
+  margin-top: -32px;
+  margin-left: -32px;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  mix-blend-mode: normal;
+}
+
+/* --- 4. MAGNETIC BUTTONS (Smooth Transition) --- */
+.magnetic {
+  transition: transform 0.4s cubic-bezier(0.1, 0.7, 0.1, 1);
+  will-change: transform;
+}
+
+/* --- 5. DYNAMIC GLASS SHINE --- */
+/* Upgrades the existing .service-card */
+.service-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* The Shine Effect tracing the mouse */
+.service-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(255, 255, 255, 0.1),
+    transparent 40%
+  );
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0; /* Hidden by default if JS fails */
+  transition: opacity 0.3s;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+/* --- 6. ANGLED MATTE REVEALS --- */
+/* Upgrades the existing .reveal class */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px) scale(0.98);
+  transition: opacity 1s cubic-bezier(0.1, 0.7, 0.1, 1), transform 1s cubic-bezier(0.1, 0.7, 0.1, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
