@@ -1,0 +1,5 @@
+# Ignore massive RAW datasets
+DD_TIMELAPSES/
+*.DNG
+*.CR2
+*.RAW

@@ -3,7 +3,7 @@
    Handles Preloader, Cursor, Cinematic Noise, and Holographic Glass.
    ========================================================================== */
 
-/* --- 1. PRELOADER (THE DIAMOND SHATTER) --- */
+/* --- 1. PRELOADER (CINEMATIC LOGO SIGNATURE) --- */
 .loading-lock {
   overflow: hidden;
   height: 100vh;
@@ -11,65 +11,71 @@
 
 #preloader {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0; width: 100%; height: 100%;
   background-color: var(--color-black);
   z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 1s cubic-bezier(0.7, 0, 0.3, 1);
+  transition: opacity 1s cubic-bezier(0.7, 0, 0.3, 1);
 }
 
-.double-diamond-loader {
+.preloader-logo-container {
+  overflow: hidden;
   position: relative;
-  width: 80px;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  z-index: 2;
 }
 
-.diamond {
+.preloader-shimmer-bar {
   position: absolute;
-  width: 40px;
-  height: 40px;
-  border: 2px solid var(--color-white);
-  transform: rotate(45deg);
-  opacity: 0;
+  top: 0; left: -100%; width: 40%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  transform: skewX(-25deg);
+  animation: logoShimmery 2.5s infinite ease-out;
 }
 
-.diamond.d1 {
-  left: 0;
-  animation: pulseLeft 2.5s cubic-bezier(0.1, 0.7, 0.1, 1) infinite;
+.preloader-aura-glow {
+  position: absolute;
+  width: 400px; height: 150px;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.08) 0%, transparent 70%);
+  z-index: 1;
+  animation: auraBreathe 3s infinite alternate ease-in-out;
 }
 
-.diamond.d2 {
-  right: 0;
-  animation: pulseRight 2.5s cubic-bezier(0.1, 0.7, 0.1, 1) infinite;
-  animation-delay: 0.2s;
+@keyframes logoReveal {
+  0% { opacity: 0; transform: translateY(20px) scale(0.95); filter: blur(10px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 
-@keyframes pulseLeft {
-  0% { transform: rotate(45deg) translateX(-20px) scale(0.5); opacity: 0; }
-  30% { transform: rotate(45deg) translateX(0) scale(1); opacity: 1; box-shadow: inset 0 0 10px rgba(255,255,255,0.5), 0 0 10px rgba(255,255,255,0.5); }
-  60% { transform: rotate(45deg) translateX(-10px) scale(0.9); opacity: 0.8; }
-  100% { transform: rotate(45deg) translateX(20px) scale(1.1); opacity: 0; }
+@keyframes logoShimmery {
+  0% { left: -100%; }
+  25% { left: 200%; }
+  100% { left: 200%; }
 }
 
-@keyframes pulseRight {
-  0% { transform: rotate(45deg) translateY(-20px) scale(0.5); opacity: 0; }
-  30% { transform: rotate(45deg) translateY(0) scale(1); opacity: 1; box-shadow: inset 0 0 10px rgba(255,255,255,0.5), 0 0 10px rgba(255,255,255,0.5); }
-  60% { transform: rotate(45deg) translateY(-10px) scale(0.9); opacity: 0.8; }
-  100% { transform: rotate(45deg) translateY(20px) scale(1.1); opacity: 0; }
+@keyframes auraBreathe {
+  0% { transform: scale(0.8); opacity: 0.3; }
+  100% { transform: scale(1.2); opacity: 1; }
 }
 
 #preloader.loaded {
   opacity: 0;
-  transform: scale(1.1); /* Cinematic zoom out */
   pointer-events: none;
+}
+
+#preloader.loaded .preloader-logo-container {
+  transform: scale(1.2) translateY(-20px);
+  filter: blur(20px);
+  opacity: 0;
+  transition: all 1s cubic-bezier(0.7, 0, 0.3, 1);
+}
+  transition: all 1s cubic-bezier(0.1, 0.7, 0.1, 1);
+}
+
+#preloader.loaded .preloader-logo {
+  transition: all 0.8s cubic-bezier(0.1, 0.7, 0.1, 1);
+  transform: scale(1.2) translateY(50px);
+  opacity: 0 !important;
 }
 
 /* --- 2. CINEMATIC NOISE OVERLAY --- */

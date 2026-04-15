@@ -19,12 +19,16 @@
 <body class="loading-lock">
 
     <!-- =======================================================================
-         CINEMATIC EFFECTS & UI ELEMENTS
+         PRELOADER
+         Cinematic split-shatter animation with double diamonds.
          ======================================================================= -->
     <div id="preloader">
-        <div class="double-diamond-loader">
-            <div class="diamond d1"></div>
-            <div class="diamond d2"></div>
+        <div class="preloader-content" style="display: flex; justify-content: center; align-items: center; width: 100vw; height: 100vh;">
+            <div class="preloader-logo-container" style="position: relative; width: 500px; opacity: 0; animation: logoReveal 1.5s cubic-bezier(0.1, 0.7, 0.1, 1) forwards;">
+                <img src="./DD_ASSETS/dd_logo_white.png" alt="Double Diamond" class="preloader-logo-img" style="width: 100%; display: block; filter: drop-shadow(0 0 30px rgba(255,255,255,0.2));">
+                <div class="preloader-shimmer-bar"></div>
+            </div>
+            <div class="preloader-aura-glow"></div>
         </div>
     </div>
     <div class="noise-overlay"></div>
@@ -37,14 +41,18 @@
          ======================================================================= -->
     <nav class="site-nav">
         <div class="container nav-container">
-            <!-- LOGO / HOME LINK -->
-            <a href="#" class="logo text-gradient magnetic">Double Diamond</a>
+            <!-- MAGNETIC LOGO -->
+            <a href="#" class="logo-container magnetic" aria-label="Double Diamond Moving & Storage">
+                <img src="./DD_ASSETS/dd_logo_white.png" alt="Double Diamond Moving" class="logo-img">
+                <div class="logo-shimmer"></div>
+            </a>
             
             <!-- DESKTOP LINKS -->
             <ul class="nav-links">
-                <li><a href="#services" class="magnetic">Services</a></li>
-                <li><a href="#about" class="magnetic">About</a></li>
-                <li><a href="#contact" class="magnetic">Contact</a></li>
+                <li><a href="#services" class="nav-link magnetic">Services</a></li>
+                <li><a href="#experts" class="nav-link magnetic">Our Experts</a></li>
+                <li><a href="#about" class="nav-link magnetic">About</a></li>
+                <li><a href="#contact" class="nav-link magnetic">Contact</a></li>
                 <!-- CUSTOMER LOGIN - HIGHLY VISIBLE PORTAL LINK -->
                 <li><a href="https://www.doublediamondmoving.com/customer-login" class="btn btn-primary magnetic" target="_blank" rel="noopener noreferrer">Customer Login</a></li>
             </ul>
@@ -144,6 +152,90 @@
 
 
         <!-- =======================================================================
+             EXPERTS SECTION
+             ======================================================================= -->
+        <!-- TEAM BANNER OVERLAY -->
+        <section id="experts" class="team-banner section reveal" style="padding-bottom: 0;">
+            <div class="team-banner-image">
+                <img src="./DD_ASSETS/team_photo.jpg" alt="Double Diamond Team" loading="lazy">
+                <div class="team-banner-overlay"></div>
+            </div>
+            <div class="team-banner-content">
+                <h2 class="text-gradient heading-massive magnetic" style="margin-bottom: var(--space-4);">Experts Only</h2>
+            </div>
+        </section>
+
+        <!-- EXPERT CARDS -->
+        <section class="section experts-section" style="padding-top: var(--space-12);">
+            <div class="container relative-z">
+                <div class="section-header reveal" style="margin-bottom: var(--space-12);">
+                    <p style="text-align: center; max-width: 600px; margin: 0 auto; color: var(--text-secondary); font-size: var(--text-xl); letter-spacing: 2px; text-transform: uppercase; font-weight: 300;">Meet Our Experts</p>
+                </div>
+                
+                <!-- FEATURED OWNERS -->
+                <div class="owners-grid">
+                    <div class="expert-card expert-card-large reveal">
+                        <div class="expert-image-wrapper"><img src="./DD_ASSETS/headshots/Zak.jpg" alt="Zak Fishkin" loading="lazy"></div>
+                        <div class="expert-content"><h3>Zak Fishkin</h3><p class="expert-title">Owner</p></div>
+                    </div>
+                    <div class="expert-card expert-card-large reveal">
+                        <div class="expert-image-wrapper"><img src="./DD_ASSETS/headshots/Lupe.jpg" alt="Lupe Sanchez" loading="lazy"></div>
+                        <div class="expert-content"><h3>Lupe Sanchez</h3><p class="expert-title">Owner</p></div>
+                    </div>
+                </div>
+
+                <!-- THE TEAM GRID -->
+                <div class="team-grid">
+                    <!-- Dispatch & Admin -->
+                    <div class="expert-card reveal">
+                        <div class="expert-image-wrapper"><img src="./DD_ASSETS/headshots/Axel.jpg" alt="Tyler Axelson" loading="lazy"></div>
+                        <div class="expert-content"><h3>Tyler Axelson</h3><p class="expert-title">Dispatch</p></div>
+                    </div>
+                    <div class="expert-card reveal">
+                        <div class="expert-image-wrapper"><img src="./DD_ASSETS/headshots/Callie.jpg" alt="Callie Brignolo" loading="lazy"></div>
+                        <div class="expert-content"><h3>Callie Brignolo</h3><p class="expert-title">Bookkeeper</p></div>
+                    </div>
+                    <div class="expert-card reveal">
+                        <div class="expert-image-wrapper"><img src="./DD_ASSETS/headshots/Dora.jpg" alt="Dora Wormell" loading="lazy"></div>
+                        <div class="expert-content"><h3>Dora Wormell</h3><p class="expert-title">Office Exec & HR</p></div>
+                    </div>
+                    <div class="expert-card reveal">
+                        <div class="expert-image-wrapper"><img src="./DD_ASSETS/headshots/Melissa.jpg" alt="Melissa" loading="lazy"></div>
+                        <div class="expert-content"><h3>Melissa</h3><p class="expert-title">Warehouse Admin</p></div>
+                    </div>
+                    <div class="expert-card reveal">
+                        <div class="expert-image-wrapper"><img src="./DD_ASSETS/headshots/Katy.jpg" alt="Katy" loading="lazy"></div>
+                        <div class="expert-content"><h3>Katy</h3><p class="expert-title">Warehouse Admin</p></div>
+                    </div>
+                    <div class="expert-card reveal">
+                        <div class="expert-image-wrapper"><img src="./DD_ASSETS/headshots/Arsene.jpg" alt="Arsene" loading="lazy"></div>
+                        <div class="expert-content"><h3>Arsene</h3><p class="expert-title">Warehouse Receiving</p></div>
+                    </div>
+                    <div class="expert-card reveal">
+                        <div class="expert-image-wrapper"><img src="./DD_ASSETS/headshots/Serjio.jpg" alt="Serjio" loading="lazy"></div>
+                        <div class="expert-content"><h3>Serjio</h3><p class="expert-title">Warehouse Operations</p></div>
+                    </div>
+                    <div class="expert-card reveal">
+                        <div class="expert-image-wrapper"><img src="./DD_ASSETS/headshots/Berto.jpg" alt="Berto" loading="lazy"></div>
+                        <div class="expert-content"><h3>Berto</h3><p class="expert-title">Gypsum Warehouse Ops</p></div>
+                    </div>
+                    <div class="expert-card reveal">
+                        <div class="expert-image-wrapper"><img src="./DD_ASSETS/headshots/Nelson.jpg" alt="Nelson Vasquez" loading="lazy"></div>
+                        <div class="expert-content"><h3>Nelson Vasquez</h3><p class="expert-title">Van Foreman</p></div>
+                    </div>
+                    <div class="expert-card reveal">
+                        <div class="expert-image-wrapper"><img src="./DD_ASSETS/headshots/Manny.jpg" alt="Manny Langarica" loading="lazy"></div>
+                        <div class="expert-content"><h3>Manny Langarica</h3><p class="expert-title">Van Foreman</p></div>
+                    </div>
+                    <div class="expert-card reveal">
+                        <div class="expert-image-wrapper"><img src="./DD_ASSETS/headshots/Jona.jpg" alt="Jona Vasquez" loading="lazy"></div>
+                        <div class="expert-content"><h3>Jona Vasquez</h3><p class="expert-title">Van Foreman</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =======================================================================
              ABOUT SECTION
              Highlights founder information and operating regions.
              ======================================================================= -->
@@ -181,7 +273,9 @@
             <div class="footer-grid">
                 
                 <div class="footer-col">
-                    <a href="#" class="logo">Double Diamond</a>
+                    <a href="#" class="logo-container" aria-label="Double Diamond Moving & Storage">
+                        <img src="./DD_ASSETS/dd_logo_white.png" alt="Double Diamond Moving" class="logo-img">
+                    </a>
                     <p style="margin-top: var(--space-4);">Premium Moving & Storage Professionals.</p>
                 </div>
                 
