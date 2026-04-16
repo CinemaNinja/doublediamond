@@ -57,6 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
 
+    // Hard reset physics calculation when preloader unlocks the body
+    window.addEventListener('scrollEngineUnlock', () => {
+        lenis.resize();
+        ScrollTrigger.refresh();
+    });
+
     // 1. HERO PARALLAX
     // Parralax the background video wrapper upward gently
     gsap.to('.hero-video-wrapper', {

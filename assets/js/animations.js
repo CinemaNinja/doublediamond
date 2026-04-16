@@ -15,10 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 preloader.style.display = 'none';
                 document.body.classList.remove('loading-lock');
+                window.dispatchEvent(new Event('scrollEngineUnlock'));
             }, 1000); // Wait for transition to finish
         }, 1500); // 1.5s initial cinematic hold
     } else {
         document.body.classList.remove('loading-lock');
+        window.dispatchEvent(new Event('scrollEngineUnlock'));
     }
 
     // --- 2. CUSTOM BLEND-MODE CURSOR ---
