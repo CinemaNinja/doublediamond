@@ -72,7 +72,11 @@ class Snowscape {
         if (!this.canvas) return;
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
-        this.particleCount = window.innerWidth > 900 ? 200 : 64;
+        const densitySlider = document.getElementById('snow-density');
+        
+        // Initial Startup Count
+        this.particleCount = densitySlider ? parseInt(densitySlider.value, 10) : (window.innerWidth > 900 ? 200 : 64);
+        
         this.mouseX = null;
         this.mouseY = null;
 
@@ -83,6 +87,14 @@ class Snowscape {
             this.resize();
             this.init();
         });
+
+        // Dynamic Density Binding
+        if (densitySlider) {
+            densitySlider.addEventListener('input', (e) => {
+                this.particleCount = parseInt(e.target.value, 10);
+                this.init();
+            });
+        }
 
         document.addEventListener('mousemove', (e) => {
             const rect = this.canvas.getBoundingClientRect();

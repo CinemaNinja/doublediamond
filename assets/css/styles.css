@@ -209,6 +209,45 @@ p {
   font-weight: 500;
 }
 
+/* Snow Controller UI */
+.snow-slider-container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  opacity: 0.4;
+  transition: opacity var(--transition-fast);
+}
+
+.snow-slider-container:hover {
+  opacity: 1;
+}
+
+.snow-icon {
+  font-size: 14px;
+}
+
+#snow-density {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 60px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  outline: none;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+#snow-density::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
 .nav-login {
   display: none;
 }
