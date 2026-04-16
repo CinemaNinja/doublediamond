@@ -72,7 +72,7 @@ class Snowscape {
         if (!this.canvas) return;
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
-        this.particleCount = window.innerWidth > 900 ? 250 : 80;
+        this.particleCount = window.innerWidth > 900 ? 200 : 64;
         this.mouseX = null;
         this.mouseY = null;
 
