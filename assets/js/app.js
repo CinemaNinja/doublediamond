@@ -96,35 +96,53 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Ensure bento grid and team grid items are heavily staggered
-    gsap.from('.expert-card, .bento-box', {
-        y: 80,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.1,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: el => el.parentElement, start: 'top 80%' }
+    // Ensure bento grid and team grid items are animated safely
+    gsap.utils.toArray('.expert-card').forEach((el, index) => {
+        gsap.from(el, {
+            y: 80,
+            opacity: 0,
+            duration: 1.2,
+            delay: index * 0.1, // pseudo-stagger
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '#experts', start: 'top 80%' }
+        });
+    });
+
+    gsap.utils.toArray('.bento-box').forEach((el, index) => {
+        gsap.from(el, {
+            y: 80,
+            opacity: 0,
+            duration: 1.2,
+            delay: index * 0.1, // pseudo-stagger
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.contact-bento-grid', start: 'top 90%' }
+        });
     });
 
     // 3. PHYSICAL FORCE GLASS TILT (Velocity Tracking)
-    // Target the glass cards in the expert and media sections
-    const proxy = { tilt: 0 };
-    const tiltSetter = gsap.quickSetter(".expert-card, .bento-box", "rotationX", "deg");
-    const clamp = gsap.utils.clamp(-10, 10); // Soft luxury physics limit
+    const tiltTargets = gsap.utils.toArray(".expert-card, .bento-box");
+    const clamp = gsap.utils.clamp(-15, 15);
 
-    // Tie physical tilt entirely to lenis scroll velocity momentum
     lenis.on('scroll', (e) => {
-        let velocityY = e.velocity;
-        let tilt = clamp(velocityY * 0.4); 
+        if (!e.velocity) return; // safeguard mathematically
         
-        if (Math.abs(tilt) > 0.1) {
-            proxy.tilt = tilt;
-            gsap.to(proxy, {
-                tilt: 0,
-                duration: 0.8,
+        let velocityY = e.velocity;
+        let tilt = clamp(velocityY * 0.3); 
+        
+        if (tiltTargets.length > 0) {
+            gsap.to(tiltTargets, {
+                rotationX: tilt,
+                duration: 0.5,
                 ease: "power3",
-                overwrite: true,
-                onUpdate: () => tiltSetter(proxy.tilt)
+                overwrite: "auto"
+            });
+            // Auto-return to 0 when scrolling stops
+            gsap.to(tiltTargets, {
+                rotationX: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                delay: 0.1,
+                overwrite: "auto"
             });
         }
     });
