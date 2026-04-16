@@ -848,12 +848,44 @@ p {
 
 /* --- RESPONSIVE --- */
 @media (max-width: 900px) {
-  .nav-links {
-    display: none; /* In a full build, add a hamburger menu. Hiding for simplicity here */
+
+  .nav-container {
+    flex-direction: column;
+    padding-top: var(--space-4);
+    padding-bottom: 0px; 
   }
   
-  .nav-login {
-    display: block;
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--space-4);
+    justify-content: flex-start;
+    align-items: center;
+    padding: var(--space-4) var(--space-8);
+    margin-top: var(--space-4);
+    background: rgba(0, 0, 0, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  /* Hide scrollbars for a clean cinematic look */
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+  .nav-links {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .nav-links li {
+    flex-shrink: 0;
+  }
+
+  .nav-links .btn {
+    padding: var(--space-2) var(--space-4);
   }
   
   .about-grid {
