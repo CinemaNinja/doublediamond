@@ -380,11 +380,15 @@ p {
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-lg);
   padding: var(--space-8);
-  height: 100%;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: transform 0.1s ease-out, box-shadow var(--transition-normal), border-color 0.3s ease;
   overflow: hidden;
   isolation: isolate;
-  /* Force stacking context */
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 /* Base overlay for Service Cards with Images */
@@ -1030,7 +1034,22 @@ p {
   font-size: var(--text-sm);
 }
 
-/* --- ANIMATIONS --- */
+/* --- REVEAL EFFECTS --- */
+.reveal-text-container {
+  overflow: hidden;
+  display: block;
+}
+
+.reveal-text {
+  display: block;
+  transform: translateY(100%);
+  transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.active .reveal-text {
+  transform: translateY(0);
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -1102,10 +1121,36 @@ p {
     box-sizing: border-box;
   }
 
+  /* Frosting overlay for better cinematic presence */
+  .nav-links::before,
+  .nav-links::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .nav-links::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.8), transparent);
+    mask-image: linear-gradient(to right, black, transparent);
+  }
+
+  .nav-links::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(0,0,0,0.8), transparent);
+    mask-image: linear-gradient(to left, black, transparent);
+  }
+
   /* Fade indicators for scroller */
   .nav-links {
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   }
 
   .nav-links::-webkit-scrollbar {

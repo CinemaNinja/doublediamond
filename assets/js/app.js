@@ -177,4 +177,64 @@ class Snowscape {
         requestAnimationFrame(() => this.animate());
     }
 }
-document.addEventListener('DOMContentLoaded', () => new Snowscape());
+
+// =======================================================================
+// CINEMATIC TILT ENGINE
+// =======================================================================
+class TiltEngine {
+    constructor() {
+        this.cards = document.querySelectorAll('.service-card');
+        this.init();
+    }
+
+    init() {
+        this.cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => this.handleMove(e, card));
+            card.addEventListener('mouseleave', () => this.handleLeave(card));
+        });
+    }
+
+    handleMove(e, card) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -10; // Max 10 deg tilt
+        const rotateY = ((x - centerX) / centerX) * 10;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+    }
+
+    handleLeave(card) {
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+    }
+}
+
+// =======================================================================
+// TYPOGRAPHY REVEAL ENGINE
+// =======================================================================
+class RevealTypography {
+    constructor() {
+        this.headings = document.querySelectorAll('.section-header h2, .hero-content h1');
+        this.init();
+    }
+
+    init() {
+        this.headings.forEach(h => {
+            // Wrap the text in a mask container if not already wrapped
+            if (!h.querySelector('.reveal-text')) {
+                const originalText = h.innerHTML;
+                h.innerHTML = `<span class="reveal-text-container"><span class="reveal-text">${originalText}</span></span>`;
+            }
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    new Snowscape();
+    new TiltEngine();
+    new RevealTypography();
+});
