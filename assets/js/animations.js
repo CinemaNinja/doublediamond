@@ -21,13 +21,23 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('loading-lock');
     }
 
-    // --- 2. CUSTOM BLEND-MODE CURSOR ---
+    // --- 2. CUSTOM BLEND-MODE CURSOR & MASKING ---
     const cursor = document.getElementById('custom-cursor');
     const interactiveElements = document.querySelectorAll('a, button, .magnetic, .service-card');
+    const maskHeading = document.querySelector('.masked-heading-container');
 
     if (cursor) {
         document.addEventListener('mousemove', (e) => {
             cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+
+            // Power the digital magnifying glass text mapping
+            if (maskHeading) {
+                const rect = maskHeading.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                maskHeading.style.setProperty('--x', `${x}px`);
+                maskHeading.style.setProperty('--y', `${y}px`);
+            }
         });
 
         interactiveElements.forEach(el => {
