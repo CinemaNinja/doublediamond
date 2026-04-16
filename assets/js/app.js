@@ -62,3 +62,107 @@ document.addEventListener('DOMContentLoaded', () => {
     
     revealElements.forEach(el => revealObserver.observe(el));
 });
+
+// =======================================================================
+// INTERACTIVE SNOWSCAPE ENGINE
+// =======================================================================
+class Snowscape {
+    constructor() {
+        this.canvas = document.getElementById('snow-canvas');
+        if (!this.canvas) return;
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.particleCount = window.innerWidth > 900 ? 250 : 80;
+        this.mouseX = null;
+        this.mouseY = null;
+        
+        this.init();
+        this.animate();
+        
+        window.addEventListener('resize', () => {
+            this.resize();
+            this.init();
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            const rect = this.canvas.getBoundingClientRect();
+            if (e.clientY <= rect.bottom && e.clientY >= rect.top) {
+                this.mouseX = e.clientX - rect.left;
+                this.mouseY = e.clientY - rect.top;
+            } else {
+                this.mouseX = null;
+                this.mouseY = null;
+            }
+        });
+        
+        document.addEventListener('mouseleave', () => {
+            this.mouseX = null;
+            this.mouseY = null;
+        });
+    }
+
+    resize() {
+        this.canvas.width = this.canvas.parentElement.clientWidth;
+        this.canvas.height = this.canvas.parentElement.clientHeight;
+    }
+
+    init() {
+        this.resize();
+        this.particles = [];
+        for (let i = 0; i < this.particleCount; i++) {
+            this.particles.push({
+                x: Math.random() * this.canvas.width,
+                y: Math.random() * this.canvas.height,
+                radius: Math.random() * 2.5 + 0.5,
+                density: Math.random() * this.particleCount,
+                speed: Math.random() * 1.5 + 0.5,
+                opacity: Math.random() * 0.7 + 0.1
+            });
+        }
+    }
+
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        for (let i = 0; i < this.particleCount; i++) {
+            let p = this.particles[i];
+            
+            // Swaying motion (wind)
+            p.y += p.speed;
+            p.x += Math.sin(p.density) * 0.8;
+            
+            // Magnetic interaction (Repel from custom cursor)
+            if (this.mouseX !== null && this.mouseY !== null) {
+                let dx = this.mouseX - p.x;
+                let dy = this.mouseY - p.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // Blast radius of 200px
+                if (distance < 200) {
+                    let force = (200 - distance) / 200;
+                    force = force * force; // Ease the force curve
+                    
+                    let pushX = (dx / distance) * force * 15;
+                    let pushY = (dy / distance) * force * 15;
+                    p.x -= pushX;
+                    p.y -= pushY;
+                }
+            }
+
+            // Boundary reset
+            if (p.y > this.canvas.height || p.x > this.canvas.width + 10 || p.x < -10) {
+                p.x = Math.random() * this.canvas.width;
+                p.y = -10;
+            }
+
+            // Draw particle
+            this.ctx.beginPath();
+            this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2, false);
+            this.ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+            this.ctx.fill();
+        }
+        
+        requestAnimationFrame(() => this.animate());
+    }
+}
+document.addEventListener('DOMContentLoaded', () => new Snowscape());
