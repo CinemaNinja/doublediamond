@@ -102,8 +102,8 @@ class Snowscape {
     }
 
     resize() {
-        this.canvas.width = this.canvas.parentElement.clientWidth;
-        this.canvas.height = this.canvas.parentElement.clientHeight;
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
     }
 
     init() {
