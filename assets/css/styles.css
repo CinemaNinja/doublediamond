@@ -526,6 +526,98 @@ p {
   margin: 0;
 }
 
+/* --- MEDIA GALLERY SECTION --- */
+.media-gallery {
+  display: flex;
+  gap: var(--space-4);
+  height: 500px;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .media-gallery { flex-wrap: wrap; height: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .media-gallery .media-card { height: 350px; }
+}
+
+@media (max-width: 480px) {
+  .media-gallery.reveal { opacity: 1 !important; transform: none !important; }
+}
+
+.media-card {
+  position: relative;
+  flex: 1;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  background: var(--bg-tertiary);
+}
+
+/* Accordion hover effect only on desktop */
+@media (min-width: 1025px) {
+  .media-gallery:hover .media-card { filter: grayscale(80%) brightness(0.4); }
+  .media-gallery .media-card:hover { 
+    flex: 3.5; 
+    filter: grayscale(0%) brightness(1.2); 
+    box-shadow: 0 0 50px rgba(0,0,0,0.9);
+    z-index: 2;
+  }
+}
+
+.media-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  filter: grayscale(50%);
+}
+
+.media-card:hover img {
+  transform: scale(1.05);
+}
+
+.media-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: var(--space-8) var(--space-6);
+  background: linear-gradient(to top, rgba(10,10,10,0.98) 0%, rgba(10,10,10,0.6) 50%, transparent 100%);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .media-overlay { opacity: 1; transform: translateY(0); filter: drop-shadow(0 0 10px rgba(0,0,0,0.9)); background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 100%); }
+  .media-card img { filter: grayscale(0%); }
+}
+
+.media-card:hover .media-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.media-overlay h3 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+  white-space: nowrap;
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.media-overlay p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  opacity: 0.9;
+  margin: 0;
+}
+
 /* --- ABOUT HIGHLIGHT --- */
 .about-section {
   background-color: var(--bg-secondary);
@@ -558,31 +650,163 @@ p {
   color: var(--text-primary);
 }
 
-/* --- FOOTER --- */
+/* --- BENTO FOOTER --- */
 .site-footer {
   background-color: var(--bg-primary);
   border-top: 1px solid rgba(255,255,255,0.05);
   padding: var(--space-16) 0 var(--space-8);
+  position: relative;
+  overflow: hidden;
 }
 
-.footer-grid {
+.contact-bento-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--space-8);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
   margin-bottom: var(--space-12);
 }
 
-.footer-col h4 {
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: var(--space-6);
-  font-size: var(--text-base);
+.bento-box {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
 }
 
-.footer-col p, .footer-col a:not(.btn) {
+.bento-box:hover {
+  border-color: rgba(255,255,255,0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+.locations-box {
+  grid-column: 1 / -1;
+  padding: var(--space-8);
+}
+
+.box-icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-4);
+  filter: grayscale(100%) brightness(1.5);
+}
+
+.footer-logo {
+  width: 250px;
+  margin-bottom: var(--space-6);
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));
+}
+
+.brand-tagline {
+  color: var(--text-primary);
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-4);
+}
+
+.founder-credit {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.contact-box h4, .portal-box h4, .locations-header h4 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-4);
+  color: var(--text-primary);
+  font-size: var(--text-lg);
+}
+
+.contact-box p, .portal-box p {
   color: var(--text-secondary);
   margin-bottom: var(--space-2);
+}
+
+.hover-glow {
+  font-size: var(--text-xl);
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.3s;
   display: block;
+  margin-top: var(--space-2);
+  color: var(--text-primary);
+}
+.hover-glow:hover {
+  text-shadow: 0 0 15px rgba(255,255,255,0.6);
+  transform: scale(1.05);
+}
+
+.maps-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  width: 100%;
+  margin-top: var(--space-6);
+}
+
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 6;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: #000;
+}
+
+.map-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  filter: grayscale(100%) contrast(1.2) invert(1) hue-rotate(180deg);
+  transition: filter 0.5s;
+}
+
+.map-wrapper:hover iframe {
+  filter: grayscale(0%) contrast(1) invert(0) hue-rotate(0deg);
+}
+
+.map-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+
+.map-wrapper:hover .map-overlay {
+  opacity: 0;
+}
+
+.map-overlay span {
+  font-size: var(--text-xl);
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: var(--space-2);
+}
+
+.map-overlay p {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .contact-bento-grid { grid-template-columns: 1fr; }
+  .maps-container { grid-template-columns: 1fr; }
+  .map-wrapper { aspect-ratio: 16/9; }
 }
 
 .footer-bottom {

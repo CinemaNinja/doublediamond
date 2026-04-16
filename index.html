@@ -51,6 +51,7 @@
             <ul class="nav-links">
                 <li><a href="#services" class="nav-link magnetic">Services</a></li>
                 <li><a href="#experts" class="nav-link magnetic">Our Experts</a></li>
+                <li><a href="#media" class="nav-link magnetic">Media</a></li>
                 <li><a href="#about" class="nav-link magnetic">About</a></li>
                 <li><a href="#contact" class="nav-link magnetic">Contact</a></li>
                 <!-- CUSTOMER LOGIN - HIGHLY VISIBLE PORTAL LINK -->
@@ -236,6 +237,79 @@
         </section>
 
         <!-- =======================================================================
+             MEDIA SECTION
+             Animated Bento-box accordion gallery displaying community and historical ads
+             ======================================================================= -->
+        <section id="media" class="section media-section">
+            <div class="container relative-z">
+                <div class="section-header reveal" style="margin-bottom: var(--space-8);">
+                    <h2 class="text-gradient">Community & Projects</h2>
+                    <p style="text-align: center; max-width: 600px; margin: 0 auto; color: var(--text-secondary);">See what we have been up to in our community and explore some of our historical features.</p>
+                </div>
+                
+                <div class="media-gallery reveal">
+                    
+                    <div class="media-card">
+                        <img src="./DD_ASSETS/media/zak-lupe.jpg" alt="Zak and Lupe" loading="lazy">
+                        <div class="media-overlay">
+                            <h3>The Founders</h3>
+                            <p>Zak Fishkin & Lupe Sanchez</p>
+                        </div>
+                    </div>
+
+                    <div class="media-card">
+                        <img src="./DD_ASSETS/media/media_zak_whse.jpg" alt="Zak at Warehouse" loading="lazy">
+                        <div class="media-overlay">
+                            <h3>Operations</h3>
+                            <p>Inside the Double Diamond Facility</p>
+                        </div>
+                    </div>
+
+                    <div class="media-card">
+                        <img src="./DD_ASSETS/media/deepa-zak.jpg" alt="Multi Generational" loading="lazy">
+                        <div class="media-overlay">
+                            <h3>Multi-Generational</h3>
+                            <p>Moving families across decades</p>
+                        </div>
+                    </div>
+
+                    <div class="media-card">
+                        <img src="./DD_ASSETS/media/golfdrive.jpg" alt="Men's Long Drive" loading="lazy">
+                        <div class="media-overlay">
+                            <h3>Community Support</h3>
+                            <p>Sponsoring the Men's Long Drive</p>
+                        </div>
+                    </div>
+
+                    <div class="media-card">
+                        <img src="./DD_ASSETS/media/scout_ad.jpg" alt="Scout Ad" loading="lazy">
+                        <div class="media-overlay">
+                            <h3>The Scout Guide</h3>
+                            <p>Featured in Aspen's Scout Guide</p>
+                        </div>
+                    </div>
+
+                    <div class="media-card">
+                        <img src="./DD_ASSETS/media/storagead.jpg" alt="Storage Ad" loading="lazy">
+                        <div class="media-overlay">
+                            <h3>Secure Storage</h3>
+                            <p>Temperature Controlled Solutions</p>
+                        </div>
+                    </div>
+
+                    <div class="media-card">
+                        <img src="./DD_ASSETS/media/scoutad2015.jpg" alt="Scout Ad 2015" loading="lazy">
+                        <div class="media-overlay">
+                            <h3>Established 2009</h3>
+                            <p>Featured in the 2015 Aspen Scout Ad</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =======================================================================
              ABOUT SECTION
              Highlights founder information and operating regions.
              ======================================================================= -->
@@ -270,57 +344,63 @@
          ======================================================================= -->
     <footer id="contact" class="site-footer">
         <div class="container">
-            <div class="footer-grid">
+            
+            <div class="contact-bento-grid">
                 
-                <div class="footer-col">
-                    <a href="#" class="logo-container" aria-label="Double Diamond Moving & Storage">
-                        <img src="./DD_ASSETS/dd_logo_white.png" alt="Double Diamond Moving" class="logo-img">
-                    </a>
-                    <p style="margin-top: var(--space-4);">Premium Moving & Storage Professionals.</p>
+                <!-- Box 1: Brand & HQ -->
+                <div class="bento-box brand-box reveal">
+                    <img src="./DD_ASSETS/dd_logo_white.png" alt="Double Diamond" class="footer-logo">
+                    <p class="brand-tagline">Premium Moving & Storage Professionals.</p>
+                    <p class="founder-credit">Founded by Zak Fishkin & Lupe Sanchez (2009)</p>
                 </div>
-                
-                <!-- CONTACT DETAILS -->
-                <!-- Designer Note: Update phone or email here -->
-                <div class="footer-col">
-                    <h4>Contact Owner</h4>
-                    <p>Zak Fishkin</p>
-                    <a href="tel:9709273770">(970) 927-3770</a>
-                    <a href="mailto:info@doublediamondmoving.com">info@doublediamondmoving.com</a>
+
+                <!-- Box 2: Direct Contact -->
+                <div class="bento-box contact-box reveal">
+                    <div class="box-icon">📞</div>
+                    <h4>Direct Line</h4>
+                    <p>Zak Fishkin (Owner)</p>
+                    <a href="tel:9709273770" class="magnetic hover-glow text-gradient">(970) 927-3770</a>
+                    <a href="mailto:info@doublediamondmoving.com" class="magnetic hover-glow" style="font-size: var(--text-sm); margin-top: var(--space-2); letter-spacing: 0;">info@doublediamondmoving.com</a>
                 </div>
-                
-                <!-- LOCATIONS & MAPS -->
-                <div class="footer-col" style="grid-column: span 2;">
-                    <h4>Locations</h4>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); margin-top: var(--space-4);">
-                        
+
+                <!-- Box 3: Portal Connect -->
+                <div class="bento-box portal-box reveal">
+                    <div class="box-icon">🔐</div>
+                    <h4>Client Portal</h4>
+                    <p style="margin-bottom: var(--space-6);">Secure online inventory management.</p>
+                    <a href="https://www.doublediamondmoving.com/customer-login" class="btn btn-primary magnetic" target="_blank" rel="noopener noreferrer">Access System</a>
+                </div>
+
+                <!-- Box 4: Locations (Spans full width) -->
+                <div class="bento-box locations-box reveal">
+                    <div class="locations-header">
+                        <div class="box-icon">📍</div>
+                        <h4>Our Facilities</h4>
+                    </div>
+                    
+                    <div class="maps-container">
                         <!-- MAP: CARBONDALE -->
-                        <div>
-                            <p style="margin-bottom: var(--space-4);">1900 Dolores Way<br>Carbondale, CO 81623</p>
-                            <div class="map-container">
-                                <iframe src="https://maps.google.com/maps?q=1900%20Dolores%20Way,%20Carbondale,%20CO%2081623&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        <div class="map-wrapper">
+                            <div class="map-overlay">
+                                <span>Carbondale, CO</span>
+                                <p>1900 Dolores Way</p>
                             </div>
+                            <iframe src="https://maps.google.com/maps?q=1900%20Dolores%20Way,%20Carbondale,%20CO%2081623&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" allowfullscreen="" loading="lazy"></iframe>
                         </div>
 
                         <!-- MAP: GYPSUM -->
-                        <div>
-                            <p style="margin-bottom: var(--space-4);">543 Gilder Way<br>Gypsum, CO 81637</p>
-                            <div class="map-container">
-                                <iframe src="https://maps.google.com/maps?q=543%20Gilder%20Way,%20Gypsum,%20CO%2081637&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        <div class="map-wrapper">
+                            <div class="map-overlay">
+                                <span>Gypsum, CO</span>
+                                <p>543 Gilder Way</p>
                             </div>
+                            <iframe src="https://maps.google.com/maps?q=543%20Gilder%20Way,%20Gypsum,%20CO%2081637&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" allowfullscreen="" loading="lazy"></iframe>
                         </div>
-
                     </div>
                 </div>
 
-                <!-- PORTAL -->
-                <div class="footer-col" style="display: flex; flex-direction: column; align-items: flex-start;">
-                    <h4>Client Portal</h4>
-                    <p style="margin-bottom: var(--space-4);">Existing clients can manage their inventory securely.</p>
-                    <a href="https://www.doublediamondmoving.com/customer-login" class="btn btn-primary magnetic" target="_blank" rel="noopener noreferrer">Access Inventory System</a>
-                </div>
-
             </div>
-            
+
             <div class="footer-bottom">
                 <p>&copy; 2026 Double Diamond Moving & Storage. All rights reserved.</p>
             </div>
