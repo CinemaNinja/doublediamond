@@ -40,27 +40,94 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Scroll Reveal Animations ---
-    const revealElements = document.querySelectorAll('.reveal');
-    
-    const revealCallback = (entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                // Optional: Stop observing once revealed
-                // observer.unobserve(entry.target);
-            }
-        });
-    };
+    // --- GSAP & LENIS SCROLL PHYSICS ENGINE ---
+    // Initialize Lenis Smooth Scrolling
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+        direction: 'vertical',
+        smooth: true,
+        smoothTouch: false,
+    });
 
-    const revealOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-    };
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => { lenis.raf(time * 1000) });
+    gsap.ticker.lagSmoothing(0);
 
-    const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
-    
-    revealElements.forEach(el => revealObserver.observe(el));
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 1. HERO PARALLAX
+    // Parralax the background video wrapper upward gently
+    gsap.to('.hero-video-wrapper', {
+        yPercent: 20,
+        ease: "none",
+        scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
+    });
+    // Parallax the hero content up much faster for deep separation depth
+    gsap.to('.hero-content', {
+        yPercent: 80,
+        opacity: 0,
+        ease: "none",
+        scrollTrigger: { trigger: ".hero", start: "top top", end: "+=600", scrub: true }
+    });
+
+    // 2. STAGGERED REVEALS (Replacing old IntersectionObserver)
+    // Stagger services specifically
+    gsap.from('.service-card', {
+        y: 80,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '#services', start: 'top 75%' }
+    });
+    // Generic GSAP reveals for all historic .reveal items
+    gsap.utils.toArray('.reveal').forEach(el => {
+        // don't double animate cards that we stagger directly above
+        if (!el.classList.contains('service-card') && !el.classList.contains('expert-card') && !el.classList.contains('media-card')) {
+            gsap.from(el, {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: { trigger: el, start: 'top 85%' }
+            });
+        }
+    });
+
+    // Ensure bento grid and team grid items are heavily staggered
+    gsap.from('.expert-card, .bento-box', {
+        y: 80,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: el => el.parentElement, start: 'top 80%' }
+    });
+
+    // 3. PHYSICAL FORCE GLASS TILT (Velocity Tracking)
+    // Target the glass cards in the expert and media sections
+    const proxy = { tilt: 0 };
+    const tiltSetter = gsap.quickSetter(".expert-card, .bento-box", "rotationX", "deg");
+    const clamp = gsap.utils.clamp(-10, 10); // Soft luxury physics limit
+
+    // Tie physical tilt entirely to lenis scroll velocity momentum
+    lenis.on('scroll', (e) => {
+        let velocityY = e.velocity;
+        let tilt = clamp(velocityY * 0.4); 
+        
+        if (Math.abs(tilt) > 0.1) {
+            proxy.tilt = tilt;
+            gsap.to(proxy, {
+                tilt: 0,
+                duration: 0.8,
+                ease: "power3",
+                overwrite: true,
+                onUpdate: () => tiltSetter(proxy.tilt)
+            });
+        }
+    });
 });
 
 // =======================================================================

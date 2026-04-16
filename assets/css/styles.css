@@ -838,6 +838,8 @@ p {
   }
 }
 
+/* Legacy CSS replaced by GSAP Engine */
+/*
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -848,6 +850,7 @@ p {
   opacity: 1;
   transform: translateY(0);
 }
+*/
 
 @keyframes diamondShimmer {
   0% { background-position: 0% 50%; }
