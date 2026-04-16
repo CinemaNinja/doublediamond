@@ -75,7 +75,7 @@ class Snowscape {
         const densitySlider = document.getElementById('snow-density');
         
         // Initial Startup Count
-        this.particleCount = densitySlider ? parseInt(densitySlider.value, 10) : (window.innerWidth > 900 ? 200 : 64);
+        this.particleCount = densitySlider ? parseInt(densitySlider.value, 10) : (window.innerWidth > 900 ? 100 : 32);
         
         this.mouseX = null;
         this.mouseY = null;
