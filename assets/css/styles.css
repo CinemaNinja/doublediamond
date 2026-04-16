@@ -238,6 +238,7 @@ p {
   z-index: 3;
   max-width: 800px;
   padding: 0 var(--space-4);
+  margin-top: -12vh;
   opacity: 0;
   transform: translateY(30px);
   animation: fadeUp 1s ease forwards 0.5s;
