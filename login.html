@@ -227,12 +227,10 @@
             btn.innerText = 'Verifying...';
             btn.style.opacity = '0.7';
             btn.disabled = true;
-
-            // Artificial delay to feel cinematic
+            // Brief cinematic delay before triggering native POST
             setTimeout(() => {
-                alert('Connection to secure portal established. Redirecting...');
-                window.location.href = "https://www.doublediamondmoving.com/customer-login";
-            }, 1800);
+                e.target.submit();
+            }, 800);
         });
     </script>
 </body>
