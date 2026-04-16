@@ -20,7 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            
+            // If the link is just "#" (like the site logo), scroll smoothly to the very top.
+            if (targetId === '#') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                return;
+            }
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
