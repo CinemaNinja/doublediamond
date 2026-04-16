@@ -172,16 +172,16 @@ p {
 
 @media (max-width: 1400px) {
   .logo-img {
-    width: 200px;
+    width: 240px;
   }
 }
 
 @media (max-width: 1300px) {
   .nav-links {
-    gap: var(--space-4);
+    gap: var(--space-6);
   }
   .logo-img {
-    width: 180px;
+    width: 230px;
   }
 }
 
@@ -1074,8 +1074,13 @@ p {
 @media (max-width: 1200px) {
   .nav-container {
     flex-direction: column;
-    padding-top: var(--space-4);
+    padding-top: var(--space-8);
     padding-bottom: var(--space-2);
+  }
+
+  .logo-img {
+    width: 220px;
+    margin-bottom: var(--space-2);
   }
 
   .nav-content {
