@@ -61,6 +61,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
 
     revealElements.forEach(el => revealObserver.observe(el));
+
+    // --- Mobile Hamburger Menu ---
+    const hamburger = document.getElementById('nav-hamburger');
+    const navContent = document.getElementById('nav-content');
+
+    if (hamburger && navContent) {
+        hamburger.addEventListener('click', () => {
+            const isOpen = hamburger.classList.toggle('active');
+            navContent.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close drawer when a nav link is clicked (smooth scroll still fires)
+        navContent.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navContent.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Close drawer on outside click
+        document.addEventListener('click', (e) => {
+            if (!nav.contains(e.target) && navContent.classList.contains('open')) {
+                hamburger.classList.remove('active');
+                navContent.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
 });
 
 // =======================================================================
@@ -79,6 +109,15 @@ class Snowscape {
         
         this.mouseX = null;
         this.mouseY = null;
+
+        // ---- Repulsion Sources ----
+        // Collect all interactive elements that should repel snow.
+        // Each source gets { el, pad, strength } for tuned behavior.
+        this.repulsionSources = [];
+        this._collectRepulsionSources();
+
+        // Cached rects for the current frame (one getBoundingClientRect per element per frame)
+        this.cachedRects = [];
 
         this.init();
         this.animate();
@@ -113,6 +152,36 @@ class Snowscape {
         });
     }
 
+    _collectRepulsionSources() {
+        // Hero CTA buttons — strong, wide field
+        document.querySelectorAll('.hero .btn').forEach(el => {
+            this.repulsionSources.push({ el, pad: 40, strength: 12 });
+        });
+
+        // Section headings — wide horizontal field, moderate push
+        // (Excludes hero h1 — only the hero buttons should repel there)
+        document.querySelectorAll('.masked-heading-container, .heading-massive, .about-text h2').forEach(el => {
+            if (!this.repulsionSources.some(s => s.el === el)) {
+                this.repulsionSources.push({ el, pad: 30, strength: 10 });
+            }
+        });
+
+        // Service cards — tight field, moderate push
+        document.querySelectorAll('.service-card').forEach(el => {
+            this.repulsionSources.push({ el, pad: 15, strength: 8 });
+        });
+
+        // Expert cards (owners + team) — tight field
+        document.querySelectorAll('.expert-card').forEach(el => {
+            this.repulsionSources.push({ el, pad: 12, strength: 8 });
+        });
+
+        // Media gallery cards
+        document.querySelectorAll('.media-card').forEach(el => {
+            this.repulsionSources.push({ el, pad: 15, strength: 8 });
+        });
+    }
+
     resize() {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
@@ -133,8 +202,41 @@ class Snowscape {
         }
     }
 
+    _cacheRects() {
+        // Cache all bounding rects once per frame, skip off-screen elements
+        const vw = this.canvas.width;
+        const vh = this.canvas.height;
+        this.cachedRects = [];
+
+        for (let i = 0; i < this.repulsionSources.length; i++) {
+            const src = this.repulsionSources[i];
+            const rect = src.el.getBoundingClientRect();
+
+            // Cull elements entirely off-screen (with generous padding)
+            const margin = 100;
+            if (rect.bottom < -margin || rect.top > vh + margin ||
+                rect.right < -margin || rect.left > vw + margin) {
+                continue;
+            }
+
+            const halfW = rect.width / 2 + src.pad;
+            const halfH = rect.height / 2 + src.pad;
+
+            this.cachedRects.push({
+                cx: rect.left + rect.width / 2,
+                cy: rect.top + rect.height / 2,
+                halfW,
+                halfH,
+                strength: src.strength
+            });
+        }
+    }
+
     animate() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        // Cache element rects once per frame (not per particle)
+        this._cacheRects();
 
         for (let i = 0; i < this.particleCount; i++) {
             let p = this.particles[i];
@@ -152,12 +254,31 @@ class Snowscape {
                 // Blast radius of 200px
                 if (distance < 200) {
                     let force = (200 - distance) / 200;
-                    force = force * force; // Ease the force curve
+                    force = force * force;
 
                     let pushX = (dx / distance) * force * 15;
                     let pushY = (dy / distance) * force * 15;
                     p.x -= pushX;
                     p.y -= pushY;
+                }
+            }
+
+            // Repulsion fields from all registered elements
+            for (let r = 0; r < this.cachedRects.length; r++) {
+                const field = this.cachedRects[r];
+                const dx = p.x - field.cx;
+                const dy = p.y - field.cy;
+
+                // Quick bounding-box pre-check (skip expensive sqrt if clearly outside)
+                if (Math.abs(dx) > field.halfW || Math.abs(dy) > field.halfH) continue;
+
+                const normDist = Math.sqrt((dx / field.halfW) ** 2 + (dy / field.halfH) ** 2);
+
+                if (normDist < 1) {
+                    const force = (1 - normDist) ** 2;
+                    const angle = Math.atan2(dy, dx);
+                    p.x += Math.cos(angle) * force * field.strength;
+                    p.y += Math.sin(angle) * force * field.strength;
                 }
             }
 

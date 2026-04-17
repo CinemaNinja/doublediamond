@@ -47,10 +47,17 @@
                 <img src="./DD_ASSETS/dd_logo_white.png" alt="Double Diamond Moving" class="logo-img">
                 <div class="logo-shimmer"></div>
             </a>
+
+            <!-- HAMBURGER TOGGLE (Mobile Only) -->
+            <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
             
             <!-- NAVIGATION CONTENT -->
-            <div class="nav-content">
-                <!-- TOP TIER: NAV ANCHORS SCROLLER -->
+            <div class="nav-content" id="nav-content">
+                <!-- TOP TIER: NAV ANCHORS -->
                 <ul class="nav-links">
                     <li><a href="#services" class="nav-link magnetic">Services</a></li>
                     <li><a href="#experts" class="nav-link magnetic">Our Experts</a></li>
@@ -96,7 +103,7 @@
                 <h1 class="text-gradient">Moving & Storage Professionals</h1>
                 <p>Providing Aspen and the Roaring Fork Valley with Expert Logistics Services since 2009.</p>
                 <div style="display: flex; gap: var(--space-4); justify-content: center;">
-                    <a href="#services" class="btn btn-primary magnetic">Our Services</a>
+                    <a href="login.html" class="btn btn-primary magnetic">Customer Login</a>
                     <a href="#contact" class="btn btn-outline magnetic">Contact Us</a>
                 </div>
             </div>
@@ -257,13 +264,40 @@
         </section>
 
         <!-- =======================================================================
-             MEDIA SECTION
+             MEDIA SECTION — COMMERCIAL VIDEO
+             Cinematic theater-style video player for the DD commercial.
+             ======================================================================= -->
+        <section id="media" class="section commercial-section">
+            <div class="container relative-z">
+                <div class="section-header reveal">
+                    <div class="masked-heading-container" style="margin-bottom: var(--space-4);">
+                        <h2 class="outline-text">Media</h2>
+                        <h2 class="fill-text">Media</h2>
+                    </div>
+                    <p style="text-align: center; max-width: 600px; margin: 0 auto; color: var(--text-secondary);">check out our commercial!</p>
+                </div>
+
+                <div class="commercial-theater reveal">
+                    <video class="commercial-video" controls playsinline preload="metadata" poster="">
+                        <source src="./DD_ASSETS/commercial.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="commercial-vignette"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =======================================================================
+             COMMUNITY & PROJECTS GALLERY
              Animated Bento-box accordion gallery displaying community and historical ads
              ======================================================================= -->
-        <section id="media" class="section media-section">
+        <section class="section media-section">
             <div class="container relative-z">
                 <div class="section-header reveal" style="margin-bottom: var(--space-8);">
-                    <h2 class="text-gradient">Community & Projects</h2>
+                    <div class="masked-heading-container" style="margin-bottom: var(--space-4);">
+                        <h2 class="outline-text">Community & Projects</h2>
+                        <h2 class="fill-text">Community & Projects</h2>
+                    </div>
                     <p style="text-align: center; max-width: 600px; margin: 0 auto; color: var(--text-secondary);">See what we have been up to in our community and explore some of our historical features.</p>
                 </div>
                 
