@@ -126,39 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Static Quote Request Forms ---
-    document.querySelectorAll('[data-quote-form]').forEach(form => {
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-
-            if (!form.reportValidity()) return;
-
-            const formData = new FormData(form);
-            const quote = {
-                name: (formData.get('name') || '').toString().trim(),
-                contact: (formData.get('contact') || '').toString().trim(),
-                service: (formData.get('service') || '').toString().trim(),
-                date: (formData.get('date') || '').toString().trim(),
-                notes: (formData.get('notes') || '').toString().trim()
-            };
-
-            const subject = `Quote Request - ${quote.service || 'Double Diamond'}`;
-            const body = [
-                'New quote request from doublediamondmoving.com',
-                '',
-                `Name: ${quote.name}`,
-                `Phone or Email: ${quote.contact}`,
-                `Service Type: ${quote.service}`,
-                `Move / Storage Date: ${quote.date || 'Flexible / TBD'}`,
-                '',
-                'Notes:',
-                quote.notes || 'No notes provided.'
-            ].join('\n');
-
-            const mailto = `mailto:info@doublediamondmoving.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            window.location.href = mailto;
-        });
-    });
 });
 
 // =======================================================================

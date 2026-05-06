@@ -359,106 +359,6 @@ footer[id] {
   justify-content: center;
 }
 
-/* --- QUOTE FORMS --- */
-.quote-form {
-  width: 100%;
-  max-width: 960px;
-  margin: var(--space-8) auto 0;
-  padding: var(--space-6);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--radius-md);
-  background: rgba(0, 0, 0, 0.48);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
-}
-
-.quote-form-compact {
-  max-width: 860px;
-}
-
-.quote-form-full {
-  margin-top: var(--space-10, 2.5rem);
-  background: rgba(255, 255, 255, 0.035);
-  text-align: left;
-}
-
-.quote-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--space-4);
-}
-
-.quote-form label {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  min-width: 0;
-}
-
-.quote-form span {
-  color: var(--text-primary);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 1.8px;
-  text-align: left;
-  text-transform: uppercase;
-}
-
-.quote-form input,
-.quote-form select,
-.quote-form textarea {
-  width: 100%;
-  min-height: 52px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-primary);
-  font: inherit;
-  font-size: var(--text-sm);
-  outline: none;
-  padding: 0 var(--space-4);
-  transition: border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.quote-form textarea {
-  min-height: 96px;
-  padding: var(--space-4);
-  resize: vertical;
-}
-
-.quote-form select {
-  color: var(--text-primary);
-}
-
-.quote-form option {
-  background: var(--color-black);
-  color: var(--color-white);
-}
-
-.quote-form input:focus,
-.quote-form select:focus,
-.quote-form textarea:focus {
-  border-color: rgba(255, 255, 255, 0.55);
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
-}
-
-.quote-notes {
-  margin-top: var(--space-4);
-}
-
-.quote-actions {
-  display: flex;
-  gap: var(--space-4);
-  justify-content: center;
-  margin-top: var(--space-6);
-}
-
-.quote-actions .btn {
-  min-width: 190px;
-}
-
 /* --- SERVICES GRID --- */
 .services-section {
   background-color: var(--bg-primary);
@@ -1847,23 +1747,13 @@ footer[id] {
   }
 
   .hero-actions,
-  .quote-actions,
   .footer-action-row {
     flex-direction: column;
   }
 
   .hero-actions .btn,
-  .quote-actions .btn,
   .footer-action-row .btn {
     width: 100%;
-  }
-
-  .quote-form {
-    padding: var(--space-4);
-  }
-
-  .quote-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .services-grid {
@@ -1929,23 +1819,6 @@ footer[id] {
 
   .about-features {
     grid-template-columns: 1fr;
-  }
-
-  .quote-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .quote-form-compact {
-    margin-top: var(--space-6);
-  }
-
-  .quote-form input,
-  .quote-form select {
-    min-height: 48px;
-  }
-
-  .quote-form textarea {
-    min-height: 80px;
   }
 
   .storage-showcase {
