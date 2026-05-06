@@ -6,6 +6,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Sticky Navbar Effect ---
     const nav = document.querySelector('.site-nav');
+    const sectionLinks = Array.from(document.querySelectorAll('[data-section-link]'));
+    const trackedSections = sectionLinks
+        .map(link => document.getElementById(link.dataset.sectionLink))
+        .filter(Boolean);
+
+    const setActiveSection = (sectionId) => {
+        sectionLinks.forEach(link => {
+            const isActive = link.dataset.sectionLink === sectionId;
+            link.classList.toggle('active', isActive);
+            if (isActive) {
+                link.setAttribute('aria-current', 'location');
+            } else {
+                link.removeAttribute('aria-current');
+            }
+        });
+    };
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -14,6 +30,21 @@ document.addEventListener('DOMContentLoaded', () => {
             nav.classList.remove('scrolled');
         }
     });
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        const visibleSections = entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visibleSections.length > 0) {
+            setActiveSection(visibleSections[0].target.id);
+        }
+    }, {
+        rootMargin: "-35% 0px -50% 0px",
+        threshold: [0.1, 0.25, 0.5, 0.75]
+    });
+
+    trackedSections.forEach(section => sectionObserver.observe(section));
 
     // --- Smooth Scroll for Anchor Links ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -27,15 +58,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     top: 0,
                     behavior: 'smooth'
                 });
+                history.pushState(null, '', window.location.pathname);
                 return;
             }
 
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
+                history.pushState(null, '', targetId);
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
+                setActiveSection(targetId.replace('#', ''));
             }
         });
     });
@@ -91,213 +125,41 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // --- Static Quote Request Forms ---
+    document.querySelectorAll('[data-quote-form]').forEach(form => {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            if (!form.reportValidity()) return;
+
+            const formData = new FormData(form);
+            const quote = {
+                name: (formData.get('name') || '').toString().trim(),
+                contact: (formData.get('contact') || '').toString().trim(),
+                service: (formData.get('service') || '').toString().trim(),
+                date: (formData.get('date') || '').toString().trim(),
+                notes: (formData.get('notes') || '').toString().trim()
+            };
+
+            const subject = `Quote Request - ${quote.service || 'Double Diamond'}`;
+            const body = [
+                'New quote request from doublediamondmoving.com',
+                '',
+                `Name: ${quote.name}`,
+                `Phone or Email: ${quote.contact}`,
+                `Service Type: ${quote.service}`,
+                `Move / Storage Date: ${quote.date || 'Flexible / TBD'}`,
+                '',
+                'Notes:',
+                quote.notes || 'No notes provided.'
+            ].join('\n');
+
+            const mailto = `mailto:info@doublediamondmoving.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailto;
+        });
+    });
 });
-
-// =======================================================================
-// INTERACTIVE SNOWSCAPE ENGINE
-// =======================================================================
-class Snowscape {
-    constructor() {
-        this.canvas = document.getElementById('snow-canvas');
-        if (!this.canvas) return;
-        this.ctx = this.canvas.getContext('2d');
-        this.particles = [];
-        const densitySlider = document.getElementById('snow-density');
-        
-        // Initial Startup Count
-        this.particleCount = densitySlider ? parseInt(densitySlider.value, 10) : (window.innerWidth > 900 ? 100 : 32);
-        
-        this.mouseX = null;
-        this.mouseY = null;
-
-        // ---- Repulsion Sources ----
-        // Collect all interactive elements that should repel snow.
-        // Each source gets { el, pad, strength } for tuned behavior.
-        this.repulsionSources = [];
-        this._collectRepulsionSources();
-
-        // Cached rects for the current frame (one getBoundingClientRect per element per frame)
-        this.cachedRects = [];
-
-        this.init();
-        this.animate();
-
-        window.addEventListener('resize', () => {
-            this.resize();
-            this.init();
-        });
-
-        // Dynamic Density Binding
-        if (densitySlider) {
-            densitySlider.addEventListener('input', (e) => {
-                this.particleCount = parseInt(e.target.value, 10);
-                this.init();
-            });
-        }
-
-        document.addEventListener('mousemove', (e) => {
-            const rect = this.canvas.getBoundingClientRect();
-            if (e.clientY <= rect.bottom && e.clientY >= rect.top) {
-                this.mouseX = e.clientX - rect.left;
-                this.mouseY = e.clientY - rect.top;
-            } else {
-                this.mouseX = null;
-                this.mouseY = null;
-            }
-        });
-
-        document.addEventListener('mouseleave', () => {
-            this.mouseX = null;
-            this.mouseY = null;
-        });
-    }
-
-    _collectRepulsionSources() {
-        // Hero CTA buttons — strong, wide field
-        document.querySelectorAll('.hero .btn').forEach(el => {
-            this.repulsionSources.push({ el, pad: 40, strength: 12 });
-        });
-
-        // Section headings — wide horizontal field, moderate push
-        // (Excludes hero h1 — only the hero buttons should repel there)
-        document.querySelectorAll('.masked-heading-container, .heading-massive, .about-text h2').forEach(el => {
-            if (!this.repulsionSources.some(s => s.el === el)) {
-                this.repulsionSources.push({ el, pad: 30, strength: 10 });
-            }
-        });
-
-        // Service cards — tight field, moderate push
-        document.querySelectorAll('.service-card').forEach(el => {
-            this.repulsionSources.push({ el, pad: 15, strength: 8 });
-        });
-
-        // Expert cards (owners + team) — tight field
-        document.querySelectorAll('.expert-card').forEach(el => {
-            this.repulsionSources.push({ el, pad: 12, strength: 8 });
-        });
-
-        // Media gallery cards
-        document.querySelectorAll('.media-card').forEach(el => {
-            this.repulsionSources.push({ el, pad: 15, strength: 8 });
-        });
-    }
-
-    resize() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-    }
-
-    init() {
-        this.resize();
-        this.particles = [];
-        for (let i = 0; i < this.particleCount; i++) {
-            this.particles.push({
-                x: Math.random() * this.canvas.width,
-                y: Math.random() * this.canvas.height,
-                radius: Math.random() * 2.5 + 0.5,
-                density: Math.random() * this.particleCount,
-                speed: Math.random() * 1.5 + 0.5,
-                opacity: Math.random() * 0.7 + 0.1
-            });
-        }
-    }
-
-    _cacheRects() {
-        // Cache all bounding rects once per frame, skip off-screen elements
-        const vw = this.canvas.width;
-        const vh = this.canvas.height;
-        this.cachedRects = [];
-
-        for (let i = 0; i < this.repulsionSources.length; i++) {
-            const src = this.repulsionSources[i];
-            const rect = src.el.getBoundingClientRect();
-
-            // Cull elements entirely off-screen (with generous padding)
-            const margin = 100;
-            if (rect.bottom < -margin || rect.top > vh + margin ||
-                rect.right < -margin || rect.left > vw + margin) {
-                continue;
-            }
-
-            const halfW = rect.width / 2 + src.pad;
-            const halfH = rect.height / 2 + src.pad;
-
-            this.cachedRects.push({
-                cx: rect.left + rect.width / 2,
-                cy: rect.top + rect.height / 2,
-                halfW,
-                halfH,
-                strength: src.strength
-            });
-        }
-    }
-
-    animate() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-        // Cache element rects once per frame (not per particle)
-        this._cacheRects();
-
-        for (let i = 0; i < this.particleCount; i++) {
-            let p = this.particles[i];
-
-            // Swaying motion (wind)
-            p.y += p.speed;
-            p.x += Math.sin(p.density) * 0.8;
-
-            // Magnetic interaction (Repel from custom cursor)
-            if (this.mouseX !== null && this.mouseY !== null) {
-                let dx = this.mouseX - p.x;
-                let dy = this.mouseY - p.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-
-                // Blast radius of 200px
-                if (distance < 200) {
-                    let force = (200 - distance) / 200;
-                    force = force * force;
-
-                    let pushX = (dx / distance) * force * 15;
-                    let pushY = (dy / distance) * force * 15;
-                    p.x -= pushX;
-                    p.y -= pushY;
-                }
-            }
-
-            // Repulsion fields from all registered elements
-            for (let r = 0; r < this.cachedRects.length; r++) {
-                const field = this.cachedRects[r];
-                const dx = p.x - field.cx;
-                const dy = p.y - field.cy;
-
-                // Quick bounding-box pre-check (skip expensive sqrt if clearly outside)
-                if (Math.abs(dx) > field.halfW || Math.abs(dy) > field.halfH) continue;
-
-                const normDist = Math.sqrt((dx / field.halfW) ** 2 + (dy / field.halfH) ** 2);
-
-                if (normDist < 1) {
-                    const force = (1 - normDist) ** 2;
-                    const angle = Math.atan2(dy, dx);
-                    p.x += Math.cos(angle) * force * field.strength;
-                    p.y += Math.sin(angle) * force * field.strength;
-                }
-            }
-
-            // Boundary reset
-            if (p.y > this.canvas.height || p.x > this.canvas.width + 10 || p.x < -10) {
-                p.x = Math.random() * this.canvas.width;
-                p.y = -10;
-            }
-
-            // Draw particle
-            this.ctx.beginPath();
-            this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2, false);
-            this.ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
-            this.ctx.fill();
-        }
-
-        requestAnimationFrame(() => this.animate());
-    }
-}
 
 // =======================================================================
 // CINEMATIC TILT ENGINE
@@ -305,10 +167,14 @@ class Snowscape {
 class TiltEngine {
     constructor() {
         this.cards = document.querySelectorAll('.service-card');
+        this.canTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+            !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         this.init();
     }
 
     init() {
+        if (!this.canTilt) return;
+
         this.cards.forEach(card => {
             card.addEventListener('mousemove', (e) => this.handleMove(e, card));
             card.addEventListener('mouseleave', () => this.handleLeave(card));
@@ -335,6 +201,52 @@ class TiltEngine {
 }
 
 // =======================================================================
+// SERVICE DETAIL SWITCHER
+// =======================================================================
+class ServiceDetails {
+    constructor() {
+        this.cards = Array.from(document.querySelectorAll('[data-service]'));
+        this.details = Array.from(document.querySelectorAll('[data-service-detail]'));
+        this.panel = document.getElementById('service-detail-panel');
+        this.init();
+    }
+
+    init() {
+        if (!this.cards.length || !this.details.length || !this.panel) return;
+
+        this.cards.forEach(card => {
+            card.addEventListener('click', () => this.select(card.dataset.service));
+            card.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    this.select(card.dataset.service);
+                }
+            });
+        });
+    }
+
+    select(serviceId) {
+        this.cards.forEach(card => {
+            const isSelected = card.dataset.service === serviceId;
+            card.classList.toggle('is-selected', isSelected);
+            card.setAttribute('aria-expanded', isSelected ? 'true' : 'false');
+        });
+
+        this.panel.classList.add('is-changing');
+
+        this.details.forEach(detail => {
+            const isActive = detail.dataset.serviceDetail === serviceId;
+            detail.hidden = !isActive;
+            detail.classList.toggle('is-active', isActive);
+        });
+
+        window.setTimeout(() => {
+            this.panel.classList.remove('is-changing');
+        }, 500);
+    }
+}
+
+// =======================================================================
 // TYPOGRAPHY REVEAL ENGINE
 // =======================================================================
 class RevealTypography {
@@ -355,7 +267,7 @@ class RevealTypography {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new Snowscape();
+    new ServiceDetails();
     new TiltEngine();
     new RevealTypography();
 });

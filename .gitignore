@@ -1,5 +1,7 @@
 # Ignore massive RAW datasets
+.DS_Store
 DD_TIMELAPSES/
+ASSETS_HIGHRES_nogit/
 *.DNG
 *.CR2
 *.RAW

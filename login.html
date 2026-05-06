@@ -21,8 +21,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
+            min-height: 100dvh;
             background: #000;
+            margin: 0;
         }
 
         .login-bg {
@@ -43,20 +45,33 @@
         }
 
         .login-container {
+            position: fixed;
+            inset: 0;
             width: 100%;
-            max-width: 450px;
-            padding: var(--space-4);
-            position: relative;
+            max-width: none;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: clamp(88px, 10vh, 120px) var(--space-4) var(--space-6);
+            display: grid;
+            place-items: center;
+            justify-items: center;
             z-index: 10;
+            box-sizing: border-box;
+            pointer-events: none;
+            overflow-y: auto;
         }
 
         .login-card {
+            width: 100%;
+            max-width: 560px;
+            min-width: 0;
+            max-height: calc(100dvh - 140px);
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(60px);
             -webkit-backdrop-filter: blur(60px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: var(--radius-2xl);
-            padding: 80px 70px;
+            padding: clamp(48px, 7vh, 80px) clamp(28px, 7vw, 70px);
             box-shadow: 0 60px 120px rgba(0, 0, 0, 0.8);
             display: flex;
             flex-direction: column;
@@ -64,16 +79,16 @@
             transition: transform 0.1s ease-out;
             transform-style: preserve-3d;
             perspective: 1200px;
-            /* Overrides for .service-card */
-            overflow: visible !important;
-            height: auto !important;
+            overflow-y: auto;
+            pointer-events: auto;
             justify-content: flex-start !important;
+            box-sizing: border-box;
         }
 
         .login-logo {
-            width: 250px;
+            width: min(250px, 82%);
             margin-top: -10px;
-            margin-bottom: 70px;
+            margin-bottom: clamp(40px, 7vh, 70px);
             display: block;
             opacity: 1;
             pointer-events: none;
@@ -81,9 +96,10 @@
 
         .login-form {
             width: 100%;
+            max-width: 430px;
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: clamp(28px, 5vh, 40px);
             position: relative;
             z-index: 50;
         }
@@ -109,9 +125,9 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: var(--radius-lg);
-            padding: 24px 28px;
+            padding: clamp(18px, 3vh, 24px) clamp(20px, 4vw, 28px);
             color: white;
-            font-size: 20px;
+            font-size: clamp(16px, 3.5vw, 20px);
             font-family: inherit;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             outline: none;
@@ -139,6 +155,9 @@
             position: relative;
             overflow: hidden;
             border-radius: var(--radius-lg);
+            width: 100%;
+            white-space: normal;
+            line-height: 1.25;
         }
 
         .login-footer {
@@ -150,6 +169,10 @@
             font-size: var(--text-sm);
             color: var(--color-gray-500);
             line-height: 1.6;
+        }
+
+        .login-footer a {
+            overflow-wrap: anywhere;
         }
 
         .back-link {
@@ -172,11 +195,43 @@
         .back-link:hover {
             opacity: 1;
         }
+
+        @media (max-width: 640px) {
+            body {
+                overflow: hidden;
+            }
+
+            .login-container {
+                padding: 92px var(--space-4) var(--space-4);
+            }
+
+            .login-card {
+                width: 100%;
+                max-width: calc(100vw - 2rem);
+                max-height: calc(100dvh - 112px);
+                padding: clamp(32px, 6vh, 48px) var(--space-6);
+            }
+
+            .login-btn {
+                font-size: 14px;
+                letter-spacing: 1.5px;
+                min-height: 64px;
+                padding: 18px;
+            }
+
+            .form-group label {
+                font-size: 13px;
+                letter-spacing: 1.5px;
+            }
+
+            .login-footer p {
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 <body>
     <div id="custom-cursor"></div>
-    <canvas id="snow-canvas"></canvas>
 
     <!-- BACK LINK -->
     <a href="index.html" class="back-link magnetic">
@@ -190,7 +245,7 @@
 
     <!-- MAIN LOGIN CONTAINER -->
     <div class="login-container">
-        <div class="login-card service-card reveal active">
+        <div class="login-card">
             <img src="./DD_ASSETS/dd_logo_white.png" alt="Double Diamond" class="login-logo">
             
             <form class="login-form" id="loginForm" action="https://accounts.doublediamondmoving.com/authenticate" method="POST">
@@ -210,7 +265,7 @@
             </form>
 
             <div class="login-footer">
-                <p>Need access? <br>Email <a href="mailto:info@doublediamondmoving.com" style="color:white; text-decoration:none; font-weight:600;">info@doublediamondmoving.com</a><br>or call (970) 927-3770</p>
+                <p>If you do not know your username and/or password please email <a href="mailto:office@doublediamondmoving.com" style="color:white; text-decoration:none; font-weight:600;">office@doublediamondmoving.com</a><br>or call (970) 927-3770</p>
             </div>
         </div>
     </div>

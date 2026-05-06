@@ -6,7 +6,64 @@
     <title>Double Diamond | Premium Moving & Storage Professionals</title>
     
     <!-- SEO & META -->
-    <meta name="description" content="Expert logistics, moving, and storage services for Aspen, Colorado and the Roaring Fork Valley. Specializing in services for Interior Designers.">
+    <meta name="description" content="Double Diamond Moving & Storage provides expert moving, logistics, art handling, warehouse receiving, and temperature-controlled storage for Aspen, the Roaring Fork Valley, Vail, and Colorado clients.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.doublediamondmoving.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Double Diamond Moving & Storage">
+    <meta property="og:description" content="Premium moving, storage, logistics, art handling, and warehouse receiving services for Aspen, the Roaring Fork Valley, Vail, and Colorado clients.">
+    <meta property="og:url" content="https://www.doublediamondmoving.com/">
+    <meta property="og:image" content="https://www.doublediamondmoving.com/DD_ASSETS/team_photo.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MovingCompany",
+        "@id": "https://www.doublediamondmoving.com/#business",
+        "name": "Double Diamond Moving & Storage",
+        "url": "https://www.doublediamondmoving.com/",
+        "logo": "https://www.doublediamondmoving.com/DD_ASSETS/dd_logo_white.png",
+        "image": "https://www.doublediamondmoving.com/DD_ASSETS/team_photo.jpg",
+        "telephone": "+1-970-927-3770",
+        "email": "info@doublediamondmoving.com",
+        "foundingDate": "2009",
+        "founder": [
+            { "@type": "Person", "name": "Zak Fishkin" },
+            { "@type": "Person", "name": "Lupe Sanchez" }
+        ],
+        "address": [
+            {
+                "@type": "PostalAddress",
+                "streetAddress": "1900 Dolores Way",
+                "addressLocality": "Carbondale",
+                "addressRegion": "CO",
+                "postalCode": "81623",
+                "addressCountry": "US"
+            },
+            {
+                "@type": "PostalAddress",
+                "streetAddress": "543 Gilder Way",
+                "addressLocality": "Gypsum",
+                "addressRegion": "CO",
+                "postalCode": "81637",
+                "addressCountry": "US"
+            }
+        ],
+        "areaServed": [
+            "Aspen, Colorado",
+            "Roaring Fork Valley, Colorado",
+            "Vail, Colorado",
+            "Colorado"
+        ],
+        "makesOffer": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Moving Services" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Temperature-Controlled Storage" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Warehouse Receiving" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Art Handling and Installation" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Building Materials Receiving and Delivery" } }
+        ]
+    }
+    </script>
     
     <!-- CSS IMPORTS -->
     <!-- The Variables file controls colors, fonts, and spacing -->
@@ -33,14 +90,13 @@
     </div>
     <div class="noise-overlay"></div>
     <div id="custom-cursor"></div>
-    <canvas id="snow-canvas"></canvas>
 
     <!-- =======================================================================
          NAVIGATION COMPONENT
-         Contains the Logo, Service Anchors, and the Customer Login Button.
+         Contains the Logo, Service Anchors, and the Login Button.
          Sticky navigation using glassmorphism.
          ======================================================================= -->
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Primary site navigation">
         <div class="container nav-container">
             <!-- MAGNETIC LOGO -->
             <a href="#" class="logo-container magnetic" aria-label="Double Diamond Moving & Storage">
@@ -59,21 +115,13 @@
             <div class="nav-content" id="nav-content">
                 <!-- TOP TIER: NAV ANCHORS -->
                 <ul class="nav-links">
-                    <li><a href="#services" class="nav-link magnetic">Services</a></li>
-                    <li><a href="#experts" class="nav-link magnetic">Our Experts</a></li>
-                    <li><a href="#media" class="nav-link magnetic">Media</a></li>
-                    <li><a href="#about" class="nav-link magnetic">About</a></li>
-                    <li><a href="#contact" class="nav-link magnetic">Contact</a></li>
+                    <li><a href="#services" class="nav-link magnetic" data-section-link="services">Services</a></li>
+                    <li><a href="#experts" class="nav-link magnetic" data-section-link="experts">Our Experts</a></li>
+                    <li><a href="#media" class="nav-link magnetic" data-section-link="media">Media</a></li>
+                    <li><a href="#about" class="nav-link magnetic" data-section-link="about">About</a></li>
+                    <li><a href="#contact" class="nav-link magnetic" data-section-link="contact">Contact</a></li>
+                    <li><a href="login.html" class="nav-link nav-login-link magnetic">Login</a></li>
                 </ul>
-                
-                <!-- BOTTOM TIER: ACTIONS (SLIDER + LOGIN) -->
-                <div class="nav-actions">
-                    <div class="snow-slider-container">
-                        <span class="snow-icon">❄️</span>
-                        <input type="range" id="snow-density" class="magnetic" min="0" max="400" value="100" title="Adjust Snow Amount">
-                    </div>
-                    <a href="login.html" class="btn btn-primary magnetic">Customer Login</a>
-                </div>
             </div>
         </div>
     </nav>
@@ -84,12 +132,13 @@
          Bypasses old splash screen. Cinematic video background.
          ======================================================================= -->
     <main>
-        <section id="hero" class="hero">
+        <section id="hero" class="hero" aria-labelledby="hero-title">
             <div class="hero-video-wrapper">
                 <!-- HERO VIDEO ASSET -->
                 <!-- Designer Note: Update the 'src' value below to change the background video -->
-                <video class="hero-video" autoplay loop muted playsinline>
-                    <source src="./DD_ASSETS/DD_SEASON_3.mov" type="video/mp4">
+                <video class="hero-video" autoplay loop muted playsinline preload="metadata" poster="./DD_ASSETS/DD_SEASON_3.poster.jpg">
+                    <source src="./DD_ASSETS/DD_SEASON_3.web.mp4" type="video/mp4">
+                    <source src="./DD_ASSETS/DD_SEASON_3.mov" type="video/quicktime">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -100,12 +149,43 @@
             <div class="hero-overlay"></div>
             
             <div class="hero-content">
-                <h1 class="text-gradient">Moving & Storage Professionals</h1>
+                <h1 id="hero-title" class="text-gradient">Moving & Storage Professionals</h1>
                 <p>Providing Aspen and the Roaring Fork Valley with Expert Logistics Services since 2009.</p>
-                <div style="display: flex; gap: var(--space-4); justify-content: center;">
-                    <a href="login.html" class="btn btn-primary magnetic">Customer Login</a>
-                    <a href="#contact" class="btn btn-outline magnetic">Contact Us</a>
-                </div>
+                <form class="quote-form quote-form-compact" data-quote-form>
+                    <div class="quote-grid">
+                        <label>
+                            <span>Name</span>
+                            <input type="text" name="name" autocomplete="name" required>
+                        </label>
+                        <label>
+                            <span>Phone or Email</span>
+                            <input type="text" name="contact" autocomplete="email" required>
+                        </label>
+                        <label>
+                            <span>Service Type</span>
+                            <select name="service" required>
+                                <option value="">Select service</option>
+                                <option>Moving</option>
+                                <option>Storage</option>
+                                <option>Interior Designer Receiving</option>
+                                <option>Art Handling</option>
+                                <option>Building Materials</option>
+                            </select>
+                        </label>
+                        <label>
+                            <span>Date</span>
+                            <input type="date" name="date">
+                        </label>
+                    </div>
+                    <label class="quote-notes">
+                        <span>Notes</span>
+                        <textarea name="notes" rows="2" placeholder="Tell us what is moving, storing, receiving, or installing."></textarea>
+                    </label>
+                    <div class="quote-actions">
+                        <button type="submit" class="btn btn-primary magnetic">Request a Quote</button>
+                        <a href="login.html" class="btn btn-outline magnetic">Login</a>
+                    </div>
+                </form>
             </div>
         </section>
 
@@ -114,12 +194,12 @@
              SERVICES GRID
              Grid layout detailing all service offerings.
              ======================================================================= -->
-        <section id="services" class="section services-section">
+        <section id="services" class="section services-section" aria-labelledby="services-title">
             <div class="container">
                 <div class="section-header reveal">
                     <div class="masked-heading-container" style="margin-bottom: var(--space-4);">
-                        <h2 class="outline-text">Our Services</h2>
-                        <h2 class="fill-text">Our Services</h2>
+                        <h2 class="outline-text" aria-hidden="true">Our Services</h2>
+                        <h2 id="services-title" class="fill-text">Our Services</h2>
                     </div>
                     <p>Meticulous care for your most valuable assets.</p>
                 </div>
@@ -127,50 +207,83 @@
                 <div class="services-grid">
                     
                     <!-- SERVICE: INTERIOR DESIGNERS -->
-                    <div class="service-card reveal" style="background-image: url('./DD_ASSETS/original_site/warehouse-receiving.jpg'); background-size: cover; background-position: center;">
+                    <div class="service-card reveal is-selected" role="button" tabindex="0" data-service="interior-designers" aria-controls="service-detail-panel" aria-expanded="true" style="background-image: url('./DD_ASSETS/original_site/warehouse-receiving.jpg'); background-size: cover; background-position: center;">
                         <div class="service-icon"><img src="./DD_ASSETS/icons/icon_interior_design.png" alt="Interior Design"></div>
                         <div class="service-card-content">
                             <h3>Interior Designers</h3>
                             <p>Warehouse Receiving, Full Detailed Inspections, Digital Photos, Temperature Controlled Storage, Online Inventory System, and Full Custom Installations.</p>
+                            <span class="service-card-cta">View details</span>
                         </div>
                     </div>
 
                     <!-- SERVICE: MOVING -->
-                    <div class="service-card reveal" style="background-image: url('./DD_ASSETS/original_site/movingbanner1.jpg'); background-size: cover; background-position: center;">
+                    <div class="service-card reveal" role="button" tabindex="0" data-service="moving" aria-controls="service-detail-panel" aria-expanded="false" style="background-image: url('./DD_ASSETS/original_site/movingbanner1.jpg'); background-size: cover; background-position: center;">
                         <div class="service-icon"><img src="./DD_ASSETS/icons/icon_moving.png" alt="Moving"></div>
                         <div class="service-card-content">
                             <h3>Moving</h3>
                             <p>Household, Commercial, Packing, Unpacking, Furniture Disassembly and Assembly, Baby Grand Pianos, Safes. We exceed expectations.</p>
+                            <span class="service-card-cta">View details</span>
                         </div>
                     </div>
 
                     <!-- SERVICE: STORAGE -->
-                    <div class="service-card reveal" style="background-image: url('./DD_ASSETS/original_site/vault-forklift.jpg'); background-size: cover; background-position: center;">
+                    <div class="service-card reveal" role="button" tabindex="0" data-service="storage" aria-controls="service-detail-panel" aria-expanded="false" style="background-image: url('./DD_ASSETS/original_site/vault-forklift.jpg'); background-size: cover; background-position: center;">
                         <div class="service-icon"><img src="./DD_ASSETS/icons/icon_storage.png" alt="Storage"></div>
                         <div class="service-card-content">
                             <h3>Storage</h3>
                             <p>Temperature Controlled, Meticulously Inventoried & maintained, Secure Storage. Including an outdoor secure lot for vehicles, boats & campers in Carbondale.</p>
+                            <span class="service-card-cta">View details</span>
                         </div>
                     </div>
 
                     <!-- SERVICE: BUILDING MATERIALS -->
-                    <div class="service-card reveal" style="background-image: url('./DD_ASSETS/original_site/building-material-handling.jpg'); background-size: cover; background-position: center;">
+                    <div class="service-card reveal" role="button" tabindex="0" data-service="building-materials" aria-controls="service-detail-panel" aria-expanded="false" style="background-image: url('./DD_ASSETS/original_site/building-material-handling.jpg'); background-size: cover; background-position: center;">
                         <div class="service-icon"><img src="./DD_ASSETS/icons/icon_building_materials.png" alt="Building Materials"></div>
                         <div class="service-card-content">
                             <h3>Building Materials</h3>
                             <p>Receiving, Warehousing and Delivery of building material including windows, cabinets and flooring. Let us help Contractors meet their deadlines.</p>
+                            <span class="service-card-cta">View details</span>
                         </div>
                     </div>
 
                     <!-- SERVICE: ART HANDLING -->
-                    <div class="service-card reveal" style="background-image: url('./DD_ASSETS/original_site/arthandling.jpg'); background-size: cover; background-position: center;">
+                    <div class="service-card reveal" role="button" tabindex="0" data-service="art-handling" aria-controls="service-detail-panel" aria-expanded="false" style="background-image: url('./DD_ASSETS/original_site/arthandling.jpg'); background-size: cover; background-position: center;">
                         <div class="service-icon"><img src="./DD_ASSETS/icons/icon_art_handling.png" alt="Art Handling"></div>
                         <div class="service-card-content">
                             <h3>Art Handling</h3>
                             <p>One piece to complete exhibits & collections. Warehouse receiving, secure temperature controlled storage, custom crating, shipping and installation.</p>
+                            <span class="service-card-cta">View details</span>
                         </div>
                     </div>
 
+                </div>
+
+                <div class="service-detail-panel reveal" id="service-detail-panel" aria-live="polite">
+                    <article class="service-detail is-active" data-service-detail="interior-designers">
+                        <p class="eyebrow">Interior designer support</p>
+                        <h3>Receiving, inspection, storage, and white-glove installation for design projects.</h3>
+                        <p>Double Diamond helps designers keep projects moving with warehouse receiving, detailed inspections, digital photo documentation, temperature-controlled storage, inventory tracking, and careful final installations across Aspen and the Roaring Fork Valley.</p>
+                    </article>
+                    <article class="service-detail" data-service-detail="moving" hidden>
+                        <p class="eyebrow">Residential and commercial moves</p>
+                        <h3>Professional crews for careful packing, moving, assembly, and specialty pieces.</h3>
+                        <p>From household moves to commercial logistics, the team handles packing, unpacking, furniture disassembly, furniture assembly, baby grand pianos, safes, and complex mountain-town access with experienced foremen.</p>
+                    </article>
+                    <article class="service-detail" data-service-detail="storage" hidden>
+                        <p class="eyebrow">Secure storage</p>
+                        <h3>Temperature-controlled inventory storage plus outdoor space for vehicles and equipment.</h3>
+                        <p>Storage is inventoried, maintained, and secured for furniture, art, designer receiving, household goods, vehicles, boats, campers, and project materials in Double Diamond facilities serving Carbondale, Gypsum, Aspen, and Vail.</p>
+                    </article>
+                    <article class="service-detail" data-service-detail="building-materials" hidden>
+                        <p class="eyebrow">Contractor logistics</p>
+                        <h3>Receiving and delivery support for windows, cabinets, flooring, and project materials.</h3>
+                        <p>Contractors can route materials to Double Diamond for organized receiving, short-term warehousing, and scheduled delivery so jobsites stay clearer and project timelines stay on track.</p>
+                    </article>
+                    <article class="service-detail" data-service-detail="art-handling" hidden>
+                        <p class="eyebrow">Art handling</p>
+                        <h3>Careful handling for single works, full collections, exhibits, crating, and installation.</h3>
+                        <p>The team supports collectors, designers, galleries, and homeowners with secure storage, custom crating, shipping coordination, installation, and collection-scale handling.</p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -180,24 +293,24 @@
              EXPERTS SECTION
              ======================================================================= -->
         <!-- TEAM BANNER OVERLAY -->
-        <section id="experts" class="team-banner section reveal" style="padding-bottom: 0;">
+        <section id="experts" class="team-banner section reveal" aria-labelledby="experts-title" style="padding-bottom: 0;">
             <div class="team-banner-image">
                 <img src="./DD_ASSETS/team_photo.jpg" alt="Double Diamond Team" loading="lazy">
                 <div class="team-banner-overlay"></div>
             </div>
             <div class="team-banner-content">
                 <div class="masked-heading-container magnetic" style="margin-bottom: var(--space-4);">
-                    <h2 class="heading-massive outline-text">Experts Only</h2>
-                    <h2 class="heading-massive fill-text">Experts Only</h2>
+                    <h2 class="heading-massive outline-text" aria-hidden="true">Experts Only</h2>
+                    <h2 id="experts-title" class="heading-massive fill-text">Experts Only</h2>
                 </div>
             </div>
         </section>
 
         <!-- EXPERT CARDS -->
-        <section class="section experts-section" style="padding-top: var(--space-12);">
+        <section class="section experts-section" aria-labelledby="team-title" style="padding-top: var(--space-12);">
             <div class="container relative-z">
                 <div class="section-header reveal" style="margin-bottom: var(--space-12);">
-                    <p style="text-align: center; max-width: 600px; margin: 0 auto; color: var(--text-secondary); font-size: var(--text-xl); letter-spacing: 2px; text-transform: uppercase; font-weight: 300;">Meet Our Experts</p>
+                    <h2 id="team-title" class="section-kicker">Meet Our Experts</h2>
                 </div>
                 
                 <!-- FEATURED OWNERS -->
@@ -267,18 +380,19 @@
              MEDIA SECTION — COMMERCIAL VIDEO
              Cinematic theater-style video player for the DD commercial.
              ======================================================================= -->
-        <section id="media" class="section commercial-section">
+        <section id="media" class="section commercial-section" aria-labelledby="media-title">
             <div class="container relative-z">
                 <div class="section-header reveal">
                     <div class="masked-heading-container" style="margin-bottom: var(--space-4);">
-                        <h2 class="outline-text">Media</h2>
-                        <h2 class="fill-text">Media</h2>
+                        <h2 class="outline-text" aria-hidden="true">Media</h2>
+                        <h2 id="media-title" class="fill-text">Media</h2>
                     </div>
                     <p style="text-align: center; max-width: 600px; margin: 0 auto; color: var(--text-secondary);">check out our commercial!</p>
                 </div>
 
                 <div class="commercial-theater reveal">
-                    <video class="commercial-video" controls playsinline preload="metadata" poster="">
+                    <video class="commercial-video" controls playsinline preload="metadata" poster="./DD_ASSETS/commercial.poster.jpg">
+                        <source src="./DD_ASSETS/commercial.web.mp4" type="video/mp4">
                         <source src="./DD_ASSETS/commercial.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -291,12 +405,12 @@
              COMMUNITY & PROJECTS GALLERY
              Animated Bento-box accordion gallery displaying community and historical ads
              ======================================================================= -->
-        <section class="section media-section">
+        <section class="section media-section" aria-labelledby="community-title">
             <div class="container relative-z">
                 <div class="section-header reveal" style="margin-bottom: var(--space-8);">
                     <div class="masked-heading-container" style="margin-bottom: var(--space-4);">
-                        <h2 class="outline-text">Community & Projects</h2>
-                        <h2 class="fill-text">Community & Projects</h2>
+                        <h2 class="outline-text" aria-hidden="true">Community & Projects</h2>
+                        <h2 id="community-title" class="fill-text">Community & Projects</h2>
                     </div>
                     <p style="text-align: center; max-width: 600px; margin: 0 auto; color: var(--text-secondary);">See what we have been up to in our community and explore some of our historical features.</p>
                 </div>
@@ -367,11 +481,11 @@
              ABOUT SECTION
              Highlights founder information and operating regions.
              ======================================================================= -->
-        <section id="about" class="section about-section" style="background-image: url('./DD_ASSETS/original_site/1900-Dolores-Warehouse.png'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <section id="about" class="section about-section" aria-labelledby="about-title" style="background-image: url('./DD_ASSETS/original_site/1900-Dolores-Warehouse.png'); background-size: cover; background-position: center; background-attachment: fixed;">
             <div class="container relative-z">
                 <div class="about-grid reveal">
                     <div class="about-text">
-                        <h2 class="text-gradient">Colorado's Expert Logistics</h2>
+                        <h2 id="about-title" class="text-gradient">Colorado's Expert Logistics</h2>
                         <p>Located just 30 miles from Aspen, Colorado and a 2nd location 35 miles from Vail, Colorado, we service the State of Colorado including the Ski Towns and provide Colorado based services for businesses and individuals throughout the United States and Overseas.</p>
                         
                         <div class="about-features">
@@ -389,6 +503,32 @@
             </div>
         </section>
 
+        <!-- =======================================================================
+             LOCAL SERVICE AREA SECTION
+             Search-friendly regional copy for high-intent local queries.
+             ======================================================================= -->
+        <section class="section service-area-section" aria-labelledby="service-area-title">
+            <div class="container">
+                <div class="service-area-layout reveal">
+                    <div class="service-area-copy">
+                        <p class="eyebrow">Service areas</p>
+                        <h2 id="service-area-title">Aspen, Roaring Fork Valley, Vail, and Colorado logistics.</h2>
+                        <p>Double Diamond Moving & Storage serves clients throughout Aspen, Snowmass, Basalt, Carbondale, Glenwood Springs, Gypsum, Vail, and the surrounding Colorado mountain communities. The team supports residential moves, interior designer receiving, art handling, secure storage, building material delivery, and long-distance logistics for homes, businesses, collectors, contractors, and designers.</p>
+                    </div>
+                    <div class="service-area-list" aria-label="Primary local service areas">
+                        <span>Aspen</span>
+                        <span>Snowmass</span>
+                        <span>Basalt</span>
+                        <span>Carbondale</span>
+                        <span>Glenwood Springs</span>
+                        <span>Gypsum</span>
+                        <span>Vail</span>
+                        <span>Colorado</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
 
@@ -396,8 +536,48 @@
          FOOTER / CONTACT INFO
          Address, Phone, and Email Data.
          ======================================================================= -->
-    <footer id="contact" class="site-footer">
+    <footer id="contact" class="site-footer" aria-labelledby="contact-title">
         <div class="container">
+            <div class="footer-contact-hero reveal">
+                <p class="eyebrow">Start a project</p>
+                <h2 id="contact-title">Move, store, receive, or install with the team that knows Colorado logistics.</h2>
+                <p>Talk directly with Double Diamond about timelines, storage needs, site access, designer receiving, art handling, or a full-service move.</p>
+                <form class="quote-form quote-form-full" data-quote-form>
+                    <div class="quote-grid">
+                        <label>
+                            <span>Name</span>
+                            <input type="text" name="name" autocomplete="name" required>
+                        </label>
+                        <label>
+                            <span>Phone or Email</span>
+                            <input type="text" name="contact" autocomplete="email" required>
+                        </label>
+                        <label>
+                            <span>Service Type</span>
+                            <select name="service" required>
+                                <option value="">Select service</option>
+                                <option>Moving</option>
+                                <option>Storage</option>
+                                <option>Interior Designer Receiving</option>
+                                <option>Art Handling</option>
+                                <option>Building Materials</option>
+                            </select>
+                        </label>
+                        <label>
+                            <span>Move / Storage Date</span>
+                            <input type="date" name="date">
+                        </label>
+                    </div>
+                    <label class="quote-notes">
+                        <span>Notes</span>
+                        <textarea name="notes" rows="4" placeholder="Project details, pickup/delivery addresses, storage needs, timelines, access notes, or inventory notes."></textarea>
+                    </label>
+                    <div class="quote-actions footer-action-row">
+                        <button type="submit" class="btn btn-primary magnetic">Request a Quote</button>
+                        <a href="tel:9709273770" class="btn btn-outline magnetic">Call (970) 927-3770</a>
+                    </div>
+                </form>
+            </div>
             
             <div class="contact-bento-grid">
                 
