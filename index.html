@@ -79,13 +79,21 @@
          PRELOADER
          Cinematic split-shatter animation with double diamonds.
          ======================================================================= -->
-    <div id="preloader">
-        <div class="preloader-content" style="display: flex; justify-content: center; align-items: center; width: 100vw; height: 100vh;">
-            <div class="preloader-logo-container" style="position: relative; width: 500px; opacity: 0; animation: logoReveal 1.5s cubic-bezier(0.1, 0.7, 0.1, 1) forwards;">
-                <img src="./DD_ASSETS/dd_logo_white.png" alt="Double Diamond" class="preloader-logo-img" style="width: 100%; display: block; filter: drop-shadow(0 0 30px rgba(255,255,255,0.2));">
-                <div class="preloader-shimmer-bar"></div>
+    <div id="preloader" aria-hidden="true">
+        <div class="preloader-grid"></div>
+        <div class="preloader-shell">
+            <div class="preloader-diamond-field" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-            <div class="preloader-aura-glow"></div>
+            <div class="preloader-logo-container">
+                <img src="./DD_ASSETS/dd_logo_white.png" alt="" class="preloader-logo-img">
+                <div class="preloader-scanline"></div>
+            </div>
+            <div class="preloader-loader"><span></span></div>
+            <p class="preloader-location">Aspen / Roaring Fork / Vail</p>
         </div>
     </div>
     <div class="noise-overlay"></div>
@@ -203,6 +211,38 @@
                     </div>
                     <p>Meticulous care for your most valuable assets.</p>
                 </div>
+
+                <div class="storage-showcase reveal" aria-labelledby="storage-showcase-title">
+                    <div class="storage-showcase-copy">
+                        <p class="eyebrow">Secure storage</p>
+                        <h3 id="storage-showcase-title">Three massive warehouse spaces built for high-value receiving, inventory, and long-term care.</h3>
+                        <p>Double Diamond gives designers, collectors, homeowners, contractors, and businesses a secure Colorado warehouse hub for furniture, art, building materials, seasonal inventory, oversized deliveries, and full-project staging. Items are received, organized, protected, and ready when the next install, move, delivery, or pickup needs to happen.</p>
+                        <div class="storage-points" aria-label="Secure storage highlights">
+                            <span>Temperature-controlled storage</span>
+                            <span>Designer receiving</span>
+                            <span>Project staging</span>
+                            <span>Oversized warehouse capacity</span>
+                        </div>
+                    </div>
+                    <div class="storage-gallery" aria-label="Secure storage warehouse media gallery">
+                        <figure class="storage-media storage-media-feature">
+                            <video autoplay loop muted playsinline preload="metadata" poster="./DD_ASSETS/storage_gallery/gypsum-exterior.poster.jpg">
+                                <source src="./DD_ASSETS/storage_gallery/gypsum-exterior.web.mp4" type="video/mp4">
+                            </video>
+                            <figcaption>Gypsum warehouse exterior</figcaption>
+                        </figure>
+                        <figure class="storage-media">
+                            <video autoplay loop muted playsinline preload="metadata" poster="./DD_ASSETS/storage_gallery/gypsum-interior.poster.jpg">
+                                <source src="./DD_ASSETS/storage_gallery/gypsum-interior.web.mp4" type="video/mp4">
+                            </video>
+                            <figcaption>Interior warehouse capacity</figcaption>
+                        </figure>
+                        <figure class="storage-media">
+                            <img src="./DD_ASSETS/storage_gallery/gypsum-pano.jpg" alt="Panoramic view inside Double Diamond secure storage warehouse" loading="lazy">
+                            <figcaption>Panoramic storage view</figcaption>
+                        </figure>
+                    </div>
+                </div>
                 
                 <div class="services-grid">
                     
@@ -222,16 +262,6 @@
                         <div class="service-card-content">
                             <h3>Moving</h3>
                             <p>Household, Commercial, Packing, Unpacking, Furniture Disassembly and Assembly, Baby Grand Pianos, Safes. We exceed expectations.</p>
-                            <span class="service-card-cta">View details</span>
-                        </div>
-                    </div>
-
-                    <!-- SERVICE: STORAGE -->
-                    <div class="service-card reveal" role="button" tabindex="0" data-service="storage" aria-controls="service-detail-panel" aria-expanded="false" style="background-image: url('./DD_ASSETS/original_site/vault-forklift.jpg'); background-size: cover; background-position: center;">
-                        <div class="service-icon"><img src="./DD_ASSETS/icons/icon_storage.png" alt="Storage"></div>
-                        <div class="service-card-content">
-                            <h3>Storage</h3>
-                            <p>Temperature Controlled, Meticulously Inventoried & maintained, Secure Storage. Including an outdoor secure lot for vehicles, boats & campers in Carbondale.</p>
                             <span class="service-card-cta">View details</span>
                         </div>
                     </div>
@@ -268,11 +298,6 @@
                         <p class="eyebrow">Residential and commercial moves</p>
                         <h3>Professional crews for careful packing, moving, assembly, and specialty pieces.</h3>
                         <p>From household moves to commercial logistics, the team handles packing, unpacking, furniture disassembly, furniture assembly, baby grand pianos, safes, and complex mountain-town access with experienced foremen.</p>
-                    </article>
-                    <article class="service-detail" data-service-detail="storage" hidden>
-                        <p class="eyebrow">Secure storage</p>
-                        <h3>Temperature-controlled inventory storage plus outdoor space for vehicles and equipment.</h3>
-                        <p>Storage is inventoried, maintained, and secured for furniture, art, designer receiving, household goods, vehicles, boats, campers, and project materials in Double Diamond facilities serving Carbondale, Gypsum, Aspen, and Vail.</p>
                     </article>
                     <article class="service-detail" data-service-detail="building-materials" hidden>
                         <p class="eyebrow">Contractor logistics</p>
@@ -454,14 +479,6 @@
                         <div class="media-overlay">
                             <h3>The Scout Guide</h3>
                             <p>Featured in Aspen's Scout Guide</p>
-                        </div>
-                    </div>
-
-                    <div class="media-card">
-                        <img src="./DD_ASSETS/media/storagead.jpg" alt="Storage Ad" loading="lazy">
-                        <div class="media-overlay">
-                            <h3>Secure Storage</h3>
-                            <p>Temperature Controlled Solutions</p>
                         </div>
                     </div>
 

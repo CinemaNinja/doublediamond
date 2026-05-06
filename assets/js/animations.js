@@ -8,17 +8,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. PRELOADER SEQUENCE ---
     const preloader = document.getElementById('preloader');
+    const restoreHashScroll = () => {
+        if (!window.location.hash) return;
+
+        const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+        if (target) {
+            requestAnimationFrame(() => {
+                target.scrollIntoView({ block: 'start' });
+            });
+        }
+    };
+
     if (preloader) {
-        // Simple delay to simulate loading or ensure video buffers
+        // Give the brand sequence enough time to complete before revealing the site.
         setTimeout(() => {
             preloader.classList.add('loaded');
             setTimeout(() => {
                 preloader.style.display = 'none';
                 document.body.classList.remove('loading-lock');
-            }, 1000); // Wait for transition to finish
-        }, 1500); // 1.5s initial cinematic hold
+                restoreHashScroll();
+            }, 950);
+        }, 2600);
     } else {
         document.body.classList.remove('loading-lock');
+        restoreHashScroll();
     }
 
     // --- 2. CUSTOM BLEND-MODE CURSOR & MASKING ---

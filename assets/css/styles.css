@@ -488,6 +488,150 @@ footer[id] {
   text-transform: uppercase;
 }
 
+.storage-showcase {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.55fr);
+  gap: var(--space-8);
+  align-items: stretch;
+  margin: 0 0 var(--space-6);
+  padding: var(--space-8);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-md);
+  background: rgba(0, 0, 0, 0.78);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.46);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.storage-showcase::before {
+  display: none;
+}
+
+.storage-showcase-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: var(--space-6) 0 var(--space-6) var(--space-2);
+}
+
+.storage-showcase-copy h3 {
+  font-size: clamp(2rem, 4vw, 4.6rem);
+  line-height: 1.02;
+  max-width: 720px;
+  text-transform: uppercase;
+}
+
+.storage-showcase-copy p:not(.eyebrow) {
+  max-width: 620px;
+  font-size: var(--text-lg);
+  line-height: 1.6;
+}
+
+.storage-points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.storage-points span {
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--text-primary);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.storage-gallery {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(220px, 0.8fr);
+  grid-template-rows: repeat(2, minmax(220px, 1fr));
+  gap: var(--space-4);
+  min-height: 650px;
+}
+
+.storage-media {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-md);
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+}
+
+.storage-media-feature {
+  grid-row: span 2;
+}
+
+.storage-media img,
+.storage-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform var(--transition-slow), filter var(--transition-normal);
+}
+
+.storage-media:hover img,
+.storage-media:hover video {
+  transform: scale(1.055);
+  filter: saturate(1.12) contrast(1.05);
+}
+
+.storage-media::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 45%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.76), transparent);
+  pointer-events: none;
+}
+
+.storage-media figcaption {
+  position: absolute;
+  left: var(--space-5);
+  right: var(--space-5);
+  bottom: var(--space-5);
+  z-index: 1;
+  color: var(--color-white);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1100px) {
+  .storage-showcase {
+    grid-template-columns: 1fr;
+  }
+
+  .storage-showcase-copy {
+    padding: 0;
+  }
+
+  .storage-showcase-copy h3,
+  .storage-showcase-copy p:not(.eyebrow) {
+    max-width: 860px;
+  }
+
+  .storage-gallery {
+    min-height: 520px;
+  }
+}
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1557,6 +1701,25 @@ footer[id] {
     padding: var(--space-16) 0;
   }
 
+  .storage-showcase {
+    gap: var(--space-6);
+    padding: var(--space-6);
+  }
+
+  .storage-showcase-copy h3 {
+    font-size: clamp(2rem, 9vw, 3.6rem);
+  }
+
+  .storage-showcase-copy p:not(.eyebrow) {
+    font-size: var(--text-base);
+  }
+
+  .storage-gallery {
+    grid-template-columns: minmax(0, 1.1fr) minmax(180px, 0.9fr);
+    grid-template-rows: repeat(2, minmax(170px, 1fr));
+    min-height: 460px;
+  }
+
   .nav-hamburger {
     display: block;
   }
@@ -1783,6 +1946,31 @@ footer[id] {
 
   .quote-form textarea {
     min-height: 80px;
+  }
+
+  .storage-showcase {
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+
+  .storage-points {
+    grid-template-columns: 1fr;
+  }
+
+  .storage-gallery {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    min-height: 0;
+  }
+
+  .storage-media,
+  .storage-media-feature {
+    grid-row: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .storage-media-feature {
+    aspect-ratio: 3 / 4;
   }
 }
 
