@@ -244,6 +244,5 @@ class RevealTypography {
 
 document.addEventListener('DOMContentLoaded', () => {
     new ServiceDetails();
-    new TiltEngine();
     new RevealTypography();
 });
