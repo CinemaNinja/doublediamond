@@ -1,0 +1,55 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/customer-login",
+      "destination": "/login.html"
+    },
+    {
+      "source": "/portal",
+      "destination": "/portal.html"
+    },
+    {
+      "source": "/home",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/interior-designer-services",
+      "destination": "/#services",
+      "permanent": false
+    },
+    {
+      "source": "/storage",
+      "destination": "/#services",
+      "permanent": false
+    },
+    {
+      "source": "/building-material-handling",
+      "destination": "/#services",
+      "permanent": false
+    },
+    {
+      "source": "/art-handling",
+      "destination": "/#services",
+      "permanent": false
+    },
+    {
+      "source": "/moving",
+      "destination": "/#services",
+      "permanent": false
+    },
+    {
+      "source": "/our-experts",
+      "destination": "/#experts",
+      "permanent": false
+    },
+    {
+      "source": "/media",
+      "destination": "/#media",
+      "permanent": false
+    }
+  ]
+}

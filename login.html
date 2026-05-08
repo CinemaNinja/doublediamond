@@ -145,6 +145,22 @@
             transform: scale(1.01);
         }
 
+        .login-feedback {
+            min-height: 22px;
+            color: var(--color-gray-100);
+            font-size: var(--text-sm);
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .login-feedback.is-error {
+            color: #f0b7b7;
+        }
+
+        .login-feedback.is-success {
+            color: #cde1f4;
+        }
+
         .login-btn {
             margin-top: 10px;
             padding: 24px;
@@ -234,7 +250,7 @@
     <div id="custom-cursor"></div>
 
     <!-- BACK LINK -->
-    <a href="index.html" class="back-link magnetic">
+    <a href="index.html" class="back-link" data-main-site-link>
         <span>←</span> Back to Main Site
     </a>
 
@@ -250,8 +266,8 @@
             
             <form class="login-form" id="loginForm" action="https://accounts.doublediamondmoving.com/authenticate" method="POST">
                 <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="name@example.com" required autocomplete="email">
+                    <label for="email">Email / Username</label>
+                    <input type="text" id="email" name="email" placeholder="Email / Username" required autocomplete="username">
                 </div>
                 
                 <div class="form-group">
@@ -262,6 +278,7 @@
                 <button type="submit" class="btn btn-primary login-btn magnetic" id="submitBtn">
                     Customer Login
                 </button>
+                <p class="login-feedback" id="loginFeedback" role="status" aria-live="polite"></p>
             </form>
 
             <div class="login-footer">
@@ -273,19 +290,117 @@
     <!-- SCRIPTS -->
     <script src="./assets/js/app.js"></script>
     <script>
-        // PAGE SPECIFIC LOGIC
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            const originalText = btn.innerText;
-            
-            btn.innerText = 'Verifying...';
-            btn.style.opacity = '0.7';
-            btn.disabled = true;
-            // Brief cinematic delay before triggering native POST
-            setTimeout(() => {
-                e.target.submit();
-            }, 800);
+        // Matches the existing Double Diamond customer portal flow.
+        const portalHost = 'https://accounts.doublediamondmoving.com';
+        const loginForm = document.getElementById('loginForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const feedback = document.getElementById('loginFeedback');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const mainSiteLink = document.querySelector('[data-main-site-link]');
+
+        mainSiteLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            window.location.assign(mainSiteLink.getAttribute('href'));
+        }, true);
+
+        const setFeedback = (message, type = '') => {
+            feedback.textContent = message;
+            feedback.className = `login-feedback${type ? ` is-${type}` : ''}`;
+        };
+
+        const setLoading = (isLoading) => {
+            submitBtn.disabled = isLoading;
+            submitBtn.style.opacity = isLoading ? '0.7' : '1';
+            submitBtn.innerText = isLoading ? 'Verifying...' : 'Customer Login';
+            loginForm.setAttribute('aria-busy', isLoading ? 'true' : 'false');
+        };
+
+        const getPortalPath = (userType) => {
+            const isMobileDevice = /android|iphone/i.test(navigator.userAgent);
+
+            switch (userType) {
+                case 'user':
+                    return '/masm-u';
+                case 'project':
+                    return isMobileDevice ? '/masm-cm' : '/masm-c';
+                case 'client':
+                    return isMobileDevice ? '/masm-pm' : '/masm-p';
+                default:
+                    return '';
+            }
+        };
+
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            if (!loginForm.reportValidity()) return;
+
+            setLoading(true);
+            setFeedback('Verifying credentials...', 'success');
+
+            const controller = new AbortController();
+            const timeout = window.setTimeout(() => controller.abort(), 20000);
+            const body = new URLSearchParams({
+                email: emailInput.value.trim(),
+                password: passwordInput.value
+            });
+
+            try {
+                const response = await fetch(`${portalHost}/authenticate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body,
+                    signal: controller.signal
+                });
+
+                if (!response.ok) {
+                    throw new Error('invalid');
+                }
+
+                const portalResponse = await response.json();
+                const portalPath = getPortalPath(portalResponse.utype);
+
+                if (!portalPath) {
+                    throw new Error('invalid');
+                }
+
+                setFeedback('Login accepted. Opening your portal...', 'success');
+                const query = new URLSearchParams(portalResponse).toString();
+                const portalHash = portalResponse.utype === 'client' ? '#ajax/client_projects' : '';
+                const portalUrl = `${portalHost}${portalPath}?${query}${portalHash}`;
+                const { pword, ...safePortalProfile } = portalResponse;
+
+                sessionStorage.setItem('ddPortalUrl', portalUrl);
+                sessionStorage.setItem('ddPortalProfile', JSON.stringify({
+                    email: safePortalProfile.email || '',
+                    firstName: safePortalProfile.fname || '',
+                    lastName: safePortalProfile.lname || '',
+                    userName: safePortalProfile.uname || '',
+                    userType: safePortalProfile.utype || '',
+                    customerId: safePortalProfile.cust_id || '',
+                    accountId: safePortalProfile._id || ''
+                }));
+
+                window.setTimeout(() => {
+                    window.location.href = 'portal.html';
+                }, 600);
+            } catch (error) {
+                const timedOut = error.name === 'AbortError';
+                setFeedback(
+                    timedOut
+                        ? 'Request timed out. Please wait a few moments and try again.'
+                        : 'Invalid account credentials. Please enter a valid email/username and password.',
+                    'error'
+                );
+                passwordInput.value = '';
+                passwordInput.focus();
+                setLoading(false);
+            } finally {
+                window.clearTimeout(timeout);
+            }
         });
     </script>
 </body>

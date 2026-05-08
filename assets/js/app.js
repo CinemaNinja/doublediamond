@@ -11,6 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
         .map(link => document.getElementById(link.dataset.sectionLink))
         .filter(Boolean);
 
+    // Keep the customer portal entry points deterministic across the nav, hero, and contact cards.
+    document.querySelectorAll('[data-login-link]').forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            window.location.assign(link.getAttribute('href'));
+        }, true);
+    });
+
     const setActiveSection = (sectionId) => {
         sectionLinks.forEach(link => {
             const isActive = link.dataset.sectionLink === sectionId;
