@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Client Portal | Double Diamond Moving & Storage</title>
+    <link rel="stylesheet" href="./assets/css/variables.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/portal.css">
+</head>
+<body class="portal-page">
+    <div class="portal-backdrop" aria-hidden="true">
+        <img src="./DD_ASSETS/aspen_mountains.png" alt="">
+    </div>
+
+    <header class="portal-header">
+        <a href="index.html" class="portal-logo" aria-label="Double Diamond home">
+            <img src="./DD_ASSETS/dd_logo_white.png" alt="Double Diamond Moving & Storage">
+        </a>
+
+        <div class="portal-account" aria-live="polite">
+            <span class="portal-status" id="portalStatus">Secure portal</span>
+            <strong id="portalAccountName">Customer account</strong>
+        </div>
+
+        <nav class="portal-actions" aria-label="Portal actions">
+            <a class="portal-action" id="portalOpenExternal" href="https://accounts.doublediamondmoving.com/" target="_blank" rel="noopener">Open full portal</a>
+            <button class="portal-action portal-action-button" id="portalSignOut" type="button">Sign out</button>
+        </nav>
+    </header>
+
+    <main class="portal-shell" aria-labelledby="portalTitle">
+        <section class="portal-intro">
+            <div>
+                <p class="eyebrow">Client portal</p>
+                <h1 id="portalTitle">Projects, inventory, and releases</h1>
+            </div>
+            <dl class="portal-meta" aria-label="Account details">
+                <div>
+                    <dt>User</dt>
+                    <dd id="portalUserName">-</dd>
+                </div>
+                <div>
+                    <dt>Type</dt>
+                    <dd id="portalUserType">-</dd>
+                </div>
+                <div>
+                    <dt>Email</dt>
+                    <dd id="portalUserEmail">-</dd>
+                </div>
+            </dl>
+        </section>
+
+        <section class="portal-frame-section" aria-label="Customer portal application">
+            <div class="portal-frame-toolbar">
+                <div>
+                    <span class="portal-dot" aria-hidden="true"></span>
+                    <span id="portalFrameLabel">Live account workspace</span>
+                </div>
+                <a id="portalFallbackLink" href="https://accounts.doublediamondmoving.com/" target="_blank" rel="noopener">Open in a new tab</a>
+            </div>
+
+            <div class="portal-frame-wrap">
+                <div class="portal-loader" id="portalLoader" role="status">
+                    <span></span>
+                    Loading portal workspace...
+                </div>
+                <iframe
+                    id="portalFrame"
+                    title="Double Diamond customer portal"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allow="fullscreen"
+                ></iframe>
+            </div>
+
+            <div class="portal-empty" id="portalEmpty" hidden>
+                <h2>Login required</h2>
+                <p>Your portal session is not available in this tab.</p>
+                <a href="login.html" class="btn btn-primary">Return to login</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="./assets/js/portal.js?v=20260512"></script>
+</body>
+</html>

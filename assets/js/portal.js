@@ -77,6 +77,10 @@
             return profile;
         }
 
+        if (!portalUrl) {
+            return profile;
+        }
+
         const url = new URL(portalUrl);
         return {
             email: url.searchParams.get('email') || '',

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Login | Double Diamond Moving & Storage</title>
+    
+    <!-- STYLES -->
+    <link rel="stylesheet" href="./assets/css/variables.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* LOGIN SPECIFIC OVERRIDES */
+        body {
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: #000;
+            margin: 0;
+        }
+
+        .login-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            filter: blur(20px) brightness(0.4);
+            transform: scale(1.1);
+        }
+
+        .login-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .login-container {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            max-width: none;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: clamp(88px, 10vh, 120px) var(--space-4) var(--space-6);
+            display: grid;
+            place-items: center;
+            justify-items: center;
+            z-index: 10;
+            box-sizing: border-box;
+            pointer-events: none;
+            overflow-y: auto;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 560px;
+            min-width: 0;
+            max-height: calc(100dvh - 140px);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(60px);
+            -webkit-backdrop-filter: blur(60px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-2xl);
+            padding: clamp(48px, 7vh, 80px) clamp(28px, 7vw, 70px);
+            box-shadow: 0 60px 120px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.1s ease-out;
+            transform-style: preserve-3d;
+            perspective: 1200px;
+            overflow-y: auto;
+            pointer-events: auto;
+            justify-content: flex-start !important;
+            box-sizing: border-box;
+        }
+
+        .login-logo {
+            width: min(250px, 82%);
+            margin-top: -10px;
+            margin-bottom: clamp(40px, 7vh, 70px);
+            display: block;
+            opacity: 1;
+            pointer-events: none;
+        }
+
+        .login-form {
+            width: 100%;
+            max-width: 430px;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(28px, 5vh, 40px);
+            position: relative;
+            z-index: 50;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+            position: relative;
+            z-index: 50;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-gray-400);
+            font-weight: 700;
+            padding-left: 2px;
+        }
+
+        .form-group input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-lg);
+            padding: clamp(18px, 3vh, 24px) clamp(20px, 4vw, 28px);
+            color: white;
+            font-size: clamp(16px, 3.5vw, 20px);
+            font-family: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+            position: relative;
+            z-index: 60;
+            width: 100%;
+            box-sizing: border-box;
+            cursor: text;
+        }
+
+        .form-group input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            transform: scale(1.01);
+        }
+
+        .login-feedback {
+            min-height: 22px;
+            color: var(--color-gray-100);
+            font-size: var(--text-sm);
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .login-feedback.is-error {
+            color: #f0b7b7;
+        }
+
+        .login-feedback.is-success {
+            color: #cde1f4;
+        }
+
+        .login-btn {
+            margin-top: 10px;
+            padding: 24px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            width: 100%;
+            white-space: normal;
+            line-height: 1.25;
+        }
+
+        .login-footer {
+            margin-top: var(--space-8);
+            text-align: center;
+        }
+
+        .login-footer p {
+            font-size: var(--text-sm);
+            color: var(--color-gray-500);
+            line-height: 1.6;
+        }
+
+        .login-footer a {
+            overflow-wrap: anywhere;
+        }
+
+        .back-link {
+            position: fixed;
+            top: var(--space-8);
+            left: var(--space-8);
+            color: white;
+            text-decoration: none;
+            font-size: var(--text-sm);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                overflow: hidden;
+            }
+
+            .login-container {
+                padding: 92px var(--space-4) var(--space-4);
+            }
+
+            .login-card {
+                width: 100%;
+                max-width: calc(100vw - 2rem);
+                max-height: calc(100dvh - 112px);
+                padding: clamp(32px, 6vh, 48px) var(--space-6);
+            }
+
+            .login-btn {
+                font-size: 14px;
+                letter-spacing: 1.5px;
+                min-height: 64px;
+                padding: 18px;
+            }
+
+            .form-group label {
+                font-size: 13px;
+                letter-spacing: 1.5px;
+            }
+
+            .login-footer p {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="custom-cursor"></div>
+
+    <!-- BACK LINK -->
+    <a href="index.html" class="back-link" data-main-site-link>
+        <span>←</span> Back to Main Site
+    </a>
+
+    <!-- BACKGROUND VIDEO (BLURRED) -->
+    <div class="login-bg">
+        <img src="./DD_ASSETS/aspen_mountains.png" alt="Double Diamond" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+
+    <!-- MAIN LOGIN CONTAINER -->
+    <div class="login-container">
+        <div class="login-card">
+            <img src="./DD_ASSETS/dd_logo_white.png" alt="Double Diamond" class="login-logo">
+            
+            <form class="login-form" id="loginForm" action="https://accounts.doublediamondmoving.com/authenticate" method="POST">
+                <div class="form-group">
+                    <label for="email">Email / Username</label>
+                    <input type="text" id="email" name="email" placeholder="Email / Username" required autocomplete="username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="current-password">
+                </div>
+                
+                <button type="submit" class="btn btn-primary login-btn magnetic" id="submitBtn">
+                    Customer Login
+                </button>
+                <p class="login-feedback" id="loginFeedback" role="status" aria-live="polite"></p>
+            </form>
+
+            <div class="login-footer">
+                <p>If you do not know your username and/or password please email <a href="mailto:office@doublediamondmoving.com" style="color:white; text-decoration:none; font-weight:600;">office@doublediamondmoving.com</a><br>or call (970) 927-3770</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="./assets/js/app.js"></script>
+    <script>
+        // Matches the existing Double Diamond customer portal flow.
+        const portalHost = 'https://accounts.doublediamondmoving.com';
+        const loginForm = document.getElementById('loginForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const feedback = document.getElementById('loginFeedback');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const mainSiteLink = document.querySelector('[data-main-site-link]');
+
+        mainSiteLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            window.location.assign(mainSiteLink.getAttribute('href'));
+        }, true);
+
+        const setFeedback = (message, type = '') => {
+            feedback.textContent = message;
+            feedback.className = `login-feedback${type ? ` is-${type}` : ''}`;
+        };
+
+        const setLoading = (isLoading) => {
+            submitBtn.disabled = isLoading;
+            submitBtn.style.opacity = isLoading ? '0.7' : '1';
+            submitBtn.innerText = isLoading ? 'Verifying...' : 'Customer Login';
+            loginForm.setAttribute('aria-busy', isLoading ? 'true' : 'false');
+        };
+
+        const getPortalPath = (userType) => {
+            const isMobileDevice = /android|iphone/i.test(navigator.userAgent);
+
+            switch (userType) {
+                case 'user':
+                    return '/masm-u';
+                case 'project':
+                    return isMobileDevice ? '/masm-cm' : '/masm-c';
+                case 'client':
+                    return isMobileDevice ? '/masm-pm' : '/masm-p';
+                default:
+                    return '';
+            }
+        };
+
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            if (!loginForm.reportValidity()) return;
+
+            setLoading(true);
+            setFeedback('Verifying credentials...', 'success');
+
+            const controller = new AbortController();
+            const timeout = window.setTimeout(() => controller.abort(), 20000);
+            const body = new URLSearchParams({
+                email: emailInput.value.trim(),
+                password: passwordInput.value
+            });
+
+            try {
+                const response = await fetch(`${portalHost}/authenticate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body,
+                    signal: controller.signal
+                });
+
+                if (!response.ok) {
+                    throw new Error('invalid');
+                }
+
+                const portalResponse = await response.json();
+                const portalPath = getPortalPath(portalResponse.utype);
+
+                if (!portalPath) {
+                    throw new Error('invalid');
+                }
+
+                setFeedback('Login accepted. Opening your portal...', 'success');
+                const query = new URLSearchParams(portalResponse).toString();
+                const portalHash = portalResponse.utype === 'client' ? '#ajax/client_projects' : '';
+                const portalUrl = `${portalHost}${portalPath}?${query}${portalHash}`;
+                const { pword, ...safePortalProfile } = portalResponse;
+
+                sessionStorage.setItem('ddPortalUrl', portalUrl);
+                sessionStorage.setItem('ddPortalProfile', JSON.stringify({
+                    email: safePortalProfile.email || '',
+                    firstName: safePortalProfile.fname || '',
+                    lastName: safePortalProfile.lname || '',
+                    userName: safePortalProfile.uname || '',
+                    userType: safePortalProfile.utype || '',
+                    customerId: safePortalProfile.cust_id || '',
+                    accountId: safePortalProfile._id || ''
+                }));
+
+                window.setTimeout(() => {
+                    window.location.href = 'portal.html';
+                }, 600);
+            } catch (error) {
+                const timedOut = error.name === 'AbortError';
+                setFeedback(
+                    timedOut
+                        ? 'Request timed out. Please wait a few moments and try again.'
+                        : 'Invalid account credentials. Please enter a valid email/username and password.',
+                    'error'
+                );
+                passwordInput.value = '';
+                passwordInput.focus();
+                setLoading(false);
+            } finally {
+                window.clearTimeout(timeout);
+            }
+        });
+    </script>
+</body>
+</html>
