@@ -8,6 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. PRELOADER SEQUENCE ---
     const preloader = document.getElementById('preloader');
+    const startHeroVideo = () => {
+        const heroVideo = document.querySelector('.hero-video');
+        if (!heroVideo) return;
+
+        const playAttempt = heroVideo.play();
+        if (playAttempt && typeof playAttempt.catch === 'function') {
+            playAttempt.catch(() => {});
+        }
+    };
     const restoreHashScroll = () => {
         if (!window.location.hash) return;
 
@@ -26,13 +35,19 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 preloader.style.display = 'none';
                 document.body.classList.remove('loading-lock');
+                startHeroVideo();
                 restoreHashScroll();
             }, 950);
         }, 2600);
     } else {
         document.body.classList.remove('loading-lock');
+        startHeroVideo();
         restoreHashScroll();
     }
+
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) startHeroVideo();
+    });
 
     // --- 2. CUSTOM BLEND-MODE CURSOR & MASKING ---
     const cursor = document.getElementById('custom-cursor');

@@ -75,7 +75,7 @@
     <!-- The Variables file controls colors, fonts, and spacing -->
     <link rel="stylesheet" href="assets/css/variables.css?v=20260508">
     <!-- The Styles file contains layout and components that use the variables -->
-    <link rel="stylesheet" href="assets/css/styles.css?v=20260615g">
+    <link rel="stylesheet" href="assets/css/styles.css?v=20260616b">
     <!-- Advanced Cinematic Animations -->
     <link rel="stylesheet" href="assets/css/animations.css?v=20260508">
 </head>
@@ -151,9 +151,8 @@
             <div class="hero-video-wrapper">
                 <!-- HERO VIDEO ASSET -->
                 <!-- Designer Note: Update the 'src' value below to change the background video -->
-                <video class="hero-video" autoplay loop muted playsinline preload="metadata" poster="./DD_ASSETS/DD_SEASON_3.poster.jpg">
-                    <source src="./DD_ASSETS/DD_SEASON_3.web.mp4" type="video/mp4">
-                    <source src="./DD_ASSETS/DD_SEASON_3.mov" type="video/quicktime">
+                <video class="hero-video" autoplay loop muted playsinline preload="metadata" poster="./DD_ASSETS/hero_media/dd-all-warehouse-hero.poster.jpg">
+                    <source src="./DD_ASSETS/hero_media/dd-all-warehouse-hero.web.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -188,71 +187,87 @@
                     <p>Meticulous care for your most valuable assets.</p>
                 </div>
 
-                <div class="storage-showcase reveal" aria-labelledby="storage-showcase-title">
-                    <div class="storage-showcase-copy">
-                        <p class="eyebrow">Secure storage</p>
-                        <h3 id="storage-showcase-title">Three massive warehouse spaces built for high-value receiving, inventory, and long-term care.</h3>
-                        <p>Double Diamond gives designers, collectors, homeowners, contractors, and businesses a secure Colorado warehouse hub for furniture, art, building materials, seasonal inventory, oversized deliveries, and full-project staging across Carbondale and Gypsum. Items are received, organized, protected, and ready when the next install, move, delivery, or pickup needs to happen.</p>
-                        <div class="storage-points" aria-label="Secure storage highlights">
-                            <span>Temperature-controlled storage</span>
-                            <span>Designer receiving</span>
-                            <span>Project staging</span>
-                            <span>Oversized warehouse capacity</span>
-                        </div>
+                <div class="service-system reveal" aria-label="Double Diamond service lifecycle">
+                    <div class="service-system-copy">
+                        <p class="eyebrow">Service system</p>
+                        <h3>Receive, protect, manage, deliver, and install with one accountable crew.</h3>
+                        <p>Every service uses the same operating standard: documented receiving, organized storage, careful handling, and coordinated release into the field. The result is less handoff friction and a cleaner project path for designers, homeowners, contractors, collectors, and businesses.</p>
                     </div>
-                    <div class="storage-gallery" aria-label="Secure storage warehouse media gallery">
-                        <figure class="storage-media storage-media-feature">
+                    <ol class="service-lifecycle">
+                        <li><span>01</span><strong>Receive</strong><em>Freight, furniture, art, and materials checked into the warehouse.</em></li>
+                        <li><span>02</span><strong>Inspect</strong><em>Condition notes, photos, and project documentation captured.</em></li>
+                        <li><span>03</span><strong>Store</strong><em>Items protected in vault, rack, floor, or temperature-controlled storage.</em></li>
+                        <li><span>04</span><strong>Release</strong><em>Inventory pulled and loaded in the right order for site access.</em></li>
+                        <li><span>05</span><strong>Install</strong><em>Delivery, placement, assembly, art hanging, and debris removal.</em></li>
+                    </ol>
+                </div>
+
+                <div class="warehouse-network reveal" aria-labelledby="warehouse-network-title">
+                    <div class="warehouse-network-header">
+                        <div>
+                            <p class="eyebrow">Warehouse network</p>
+                            <h3 id="warehouse-network-title">Three Colorado warehouse facilities supporting storage, receiving, staging, and delivery.</h3>
+                        </div>
+                        <p>The warehouses are the operational hub behind the services: designer receiving, long-term storage, contractor staging, art handling, and coordinated release for installation days across Colorado mountain communities.</p>
+                    </div>
+
+                    <div class="warehouse-media-grid" aria-label="Double Diamond warehouse locations">
+                        <figure class="service-media-tile warehouse-media-tile warehouse-media-feature">
                             <video autoplay loop muted playsinline preload="metadata" poster="./DD_ASSETS/storage_gallery/carbondale-warehouse.poster.jpg">
                                 <source src="./DD_ASSETS/storage_gallery/carbondale-warehouse.web.mp4" type="video/mp4">
                             </video>
-                            <figcaption>1900 Dolores Way, Carbondale</figcaption>
+                            <figcaption><strong>1900 Dolores Way</strong><span>Carbondale headquarters and receiving hub.</span></figcaption>
                         </figure>
-                        <figure class="storage-media">
+                        <figure class="service-media-tile warehouse-media-tile">
                             <video autoplay loop muted playsinline preload="metadata" poster="./DD_ASSETS/storage_gallery/gypsum-gilder-warehouse.poster.jpg">
                                 <source src="./DD_ASSETS/storage_gallery/gypsum-gilder-warehouse.web.mp4" type="video/mp4">
                             </video>
-                            <figcaption>543 Gilder Way, Gypsum</figcaption>
+                            <figcaption><strong>543 Gilder Way</strong><span>Gypsum storage and project support.</span></figcaption>
                         </figure>
-                        <figure class="storage-media">
+                        <figure class="service-media-tile warehouse-media-tile">
                             <video autoplay loop muted playsinline preload="metadata" poster="./DD_ASSETS/storage_gallery/gypsum-plane-warehouse.poster.jpg">
                                 <source src="./DD_ASSETS/storage_gallery/gypsum-plane-warehouse.web.mp4" type="video/mp4">
                             </video>
-                            <figcaption>460 Plane Street, Gypsum</figcaption>
+                            <figcaption><strong>460 Plane Street</strong><span>Gypsum overflow, staging, and release space.</span></figcaption>
                         </figure>
                     </div>
-                    <div class="storage-capability-grid" aria-label="Storage service capabilities">
-                        <figure class="storage-capability-card">
+
+                    <div class="warehouse-capability-row" aria-label="Warehouse capabilities">
+                        <figure class="service-media-tile capability-tile">
                             <img src="./DD_ASSETS/original_site/vault-forklift.jpg" alt="Forklift moving vault storage containers inside a Double Diamond warehouse" loading="lazy">
-                            <figcaption>
-                                <strong>Vault storage</strong>
-                                <span>Protected warehouse vaults for furniture, fixtures, and project inventory.</span>
-                            </figcaption>
+                            <figcaption><strong>Vault storage</strong><span>Protected warehouse vaults for furniture, fixtures, and project inventory.</span></figcaption>
                         </figure>
-                        <figure class="storage-capability-card">
+                        <figure class="service-media-tile capability-tile">
                             <img src="./DD_ASSETS/original_site/rackstorage.jpg" alt="Rack storage for wrapped furniture and inventory" loading="lazy">
-                            <figcaption>
-                                <strong>Rack storage</strong>
-                                <span>Vertical capacity for wrapped, inventoried, and staged goods.</span>
-                            </figcaption>
+                            <figcaption><strong>Rack storage</strong><span>Vertical capacity for wrapped, inventoried, and staged goods.</span></figcaption>
                         </figure>
-                        <figure class="storage-capability-card">
+                        <figure class="service-media-tile capability-tile">
                             <img src="./DD_ASSETS/original_site/warehouse-pallet-jack.jpg" alt="Warehouse team member moving staged materials with a pallet jack" loading="lazy">
-                            <figcaption>
-                                <strong>Floor staging</strong>
-                                <span>Project-ready staging for oversized deliveries and scheduled releases.</span>
-                            </figcaption>
+                            <figcaption><strong>Floor staging</strong><span>Project-ready staging for oversized deliveries and scheduled releases.</span></figcaption>
                         </figure>
                     </div>
                 </div>
-                
+
+                <div class="service-selector-intro reveal">
+                    <p class="eyebrow">Choose a service path</p>
+                    <h3>Specialized work, same documented standard.</h3>
+                    <p>Every path connects back to warehouse controls, documented handling, and field crews who know how to finish the job cleanly.</p>
+                </div>
+
                 <div class="services-grid">
                     
                     <!-- SERVICE: INTERIOR DESIGNERS -->
                     <div class="service-card reveal is-selected" role="button" tabindex="0" data-service="interior-designers" aria-controls="service-detail-panel" aria-expanded="true" style="background-image: url('./DD_ASSETS/original_site/interior-designer.jpg'); background-size: cover; background-position: center;">
                         <div class="service-icon"><img src="./DD_ASSETS/icons/icon_interior_design.png" alt="Interior Design"></div>
                         <div class="service-card-content">
+                            <span class="service-card-meta">01 / Designer projects</span>
                             <h3>Interior Designers</h3>
-                            <p>Warehouse Receiving, Full Detailed Inspections, Digital Photos, Temperature Controlled Storage, Online Inventory System, and Full Custom Installations.</p>
+                            <p>Receiving, inventory, storage, releases, and white-glove installations for design teams.</p>
+                            <div class="service-card-tags" aria-label="Interior designer service highlights">
+                                <span>Inventory</span>
+                                <span>Receiving</span>
+                                <span>Install</span>
+                            </div>
                             <span class="service-card-cta">View details</span>
                         </div>
                     </div>
@@ -261,8 +276,14 @@
                     <div class="service-card reveal" role="button" tabindex="0" data-service="moving" aria-controls="service-detail-panel" aria-expanded="false" style="background-image: url('./DD_ASSETS/original_site/movingbanner1.jpg'); background-size: cover; background-position: center;">
                         <div class="service-icon"><img src="./DD_ASSETS/icons/icon_moving.png" alt="Moving"></div>
                         <div class="service-card-content">
+                            <span class="service-card-meta">02 / Homes and businesses</span>
                             <h3>Moving</h3>
-                            <p>Household, Commercial, Packing, Unpacking, Furniture Disassembly and Assembly, Baby Grand Pianos, Safes. We exceed expectations.</p>
+                            <p>Prepared crews for packing, moving, assembly, and specialty access in mountain homes and commercial spaces.</p>
+                            <div class="service-card-tags" aria-label="Moving service highlights">
+                                <span>Pack</span>
+                                <span>Move</span>
+                                <span>Set</span>
+                            </div>
                             <span class="service-card-cta">View details</span>
                         </div>
                     </div>
@@ -271,8 +292,14 @@
                     <div class="service-card reveal" role="button" tabindex="0" data-service="building-materials" aria-controls="service-detail-panel" aria-expanded="false" style="background-image: url('./DD_ASSETS/original_site/building-material-handling.jpg'); background-size: cover; background-position: center;">
                         <div class="service-icon"><img src="./DD_ASSETS/icons/icon_building_materials.png" alt="Building Materials"></div>
                         <div class="service-card-content">
+                            <span class="service-card-meta">03 / Contractor logistics</span>
                             <h3>Building Materials</h3>
-                            <p>Receiving, Warehousing and Delivery of building material including windows, cabinets and flooring. Let us help Contractors meet their deadlines.</p>
+                            <p>Receiving, warehousing, staging, and delivery for finish materials before the jobsite is ready.</p>
+                            <div class="service-card-tags" aria-label="Building material service highlights">
+                                <span>Receive</span>
+                                <span>Stage</span>
+                                <span>Deliver</span>
+                            </div>
                             <span class="service-card-cta">View details</span>
                         </div>
                     </div>
@@ -281,8 +308,14 @@
                     <div class="service-card reveal" role="button" tabindex="0" data-service="art-handling" aria-controls="service-detail-panel" aria-expanded="false" style="background-image: url('./DD_ASSETS/original_site/arthandling2.jpg'); background-size: cover; background-position: center;">
                         <div class="service-icon"><img src="./DD_ASSETS/icons/icon_art_handling.png" alt="Art Handling"></div>
                         <div class="service-card-content">
+                            <span class="service-card-meta">04 / Collections and exhibits</span>
                             <h3>Art Handling</h3>
-                            <p>One piece to complete exhibits & collections. Warehouse receiving, secure temperature controlled storage, custom crating, shipping and installation.</p>
+                            <p>Condition-aware handling, crating, storage, transport, and installation for fragile or high-value works.</p>
+                            <div class="service-card-tags" aria-label="Art handling service highlights">
+                                <span>Crate</span>
+                                <span>Store</span>
+                                <span>Install</span>
+                            </div>
                             <span class="service-card-cta">View details</span>
                         </div>
                     </div>
@@ -295,6 +328,10 @@
                             <p class="eyebrow">Interior designer support</p>
                             <h3>Receiving, inspection, storage, and white-glove installation for design projects.</h3>
                             <p class="service-detail-lead">Double Diamond helps designers keep projects moving from first shipment through final placement, with warehouse receiving, photo documentation, temperature-controlled storage, inventory tracking, and careful installations across Colorado mountain communities.</p>
+                            <div class="service-detail-summary" aria-label="Interior designer service summary">
+                                <span><strong>Core flow</strong><em>Receive / inventory / release / install</em></span>
+                                <span><strong>Best for</strong><em>Designers, project managers, and homeowners</em></span>
+                            </div>
                             <ul class="service-detail-list">
                                 <li>Warehouse receiving with full item inspections and condition notes.</li>
                                 <li>Digital photos and online inventory support for project visibility.</li>
@@ -307,63 +344,41 @@
                             <img src="./DD_ASSETS/original_site/interior-designer.jpg" alt="Double Diamond crew documenting a received furniture item for an interior design project" loading="lazy">
                             <figcaption>Receiving, inspection, and project documentation.</figcaption>
                         </figure>
-                        <div class="designer-workflow" aria-label="Interior designer workflow">
-                            <div class="designer-workflow-header">
-                                <p class="eyebrow">Designer workflow</p>
-                                <h4>Online inventory, warehouse receiving, and custom installation support.</h4>
-                                <p>These expanded services carry over the detail from Double Diamond's original Interior Designer Services page, keeping project communication, inspection, storage, release, and installation work in one organized path.</p>
-                            </div>
-                            <div class="designer-workflow-list">
-                                <section class="designer-workflow-item">
-                                    <figure class="designer-workflow-media inventory-stack">
-                                        <img src="./DD_ASSETS/original_site/online-inventory.png" alt="Online inventory dashboard showing received items for a design project" loading="lazy">
-                                        <div class="inventory-thumbnails">
-                                            <img src="./DD_ASSETS/original_site/online-inventory2.png" alt="Online inventory item detail with condition photos" loading="lazy">
-                                            <img src="./DD_ASSETS/original_site/online-inventory3.png" alt="Printable online inventory report for a client project" loading="lazy">
-                                        </div>
-                                    </figure>
-                                    <div class="designer-workflow-copy">
-                                        <span class="workflow-step">01</span>
+                        <div class="service-detail-modules">
+                            <details class="service-module">
+                                <summary><span><strong>Designer workflow</strong><em>Online inventory, receiving protocol, and custom installation sequence</em></span></summary>
+                                <div class="module-grid">
+                                    <section class="module-card">
+                                        <span>01</span>
                                         <h5>Online Inventory System</h5>
                                         <p>Web-accessible proprietary software keeps Double Diamond and the interior designer aligned from receiving through storage, release, installation, and communication.</p>
-                                        <ul>
-                                            <li>Login access to the receiving report for each project.</li>
-                                            <li>Photos, item details, condition notes, locations, and release status in one place.</li>
-                                            <li>Email notifications when the report is updated or damage is documented.</li>
-                                        </ul>
-                                    </div>
-                                </section>
-                                <section class="designer-workflow-item">
-                                    <figure class="designer-workflow-media">
-                                        <img src="./DD_ASSETS/original_site/warehouse-receiving.jpg" alt="Double Diamond warehouse receiving area with protected furniture and storage vaults" loading="lazy">
-                                    </figure>
-                                    <div class="designer-workflow-copy">
-                                        <span class="workflow-step">02</span>
+                                    </section>
+                                    <section class="module-card">
+                                        <span>02</span>
                                         <h5>Warehouse Receiving</h5>
-                                        <p>Every shipment is opened, unpacked, inspected, photographed, and cataloged so designers have documentation before an item moves into storage or installation planning.</p>
-                                        <ul>
-                                            <li>Visible freight damage is marked on the bill of lading and photographed.</li>
-                                            <li>Each received item is matched to project notes, location, condition, and storage needs.</li>
-                                            <li>Advance account setup helps the warehouse receive designer freight cleanly.</li>
-                                        </ul>
-                                    </div>
-                                </section>
-                                <section class="designer-workflow-item">
-                                    <figure class="designer-workflow-media">
-                                        <img src="./DD_ASSETS/original_site/custom-installation.jpg" alt="Double Diamond installation crew carrying a large rug through a finished home" loading="lazy">
-                                    </figure>
-                                    <div class="designer-workflow-copy">
-                                        <span class="workflow-step">03</span>
+                                        <p>Each shipment is unpacked, inspected, photographed, and cataloged before it moves into storage or installation planning.</p>
+                                    </section>
+                                    <section class="module-card">
+                                        <span>03</span>
                                         <h5>Full Custom Installations</h5>
-                                        <p>Install crews release items from storage, confirm inventory numbers, sequence the load, and place furniture, rugs, art, and accessories with finish-level care.</p>
-                                        <ul>
-                                            <li>Rugs can be loaded last and placed first to support the full install sequence.</li>
-                                            <li>Furniture setup, accessory placement, art hanging, hoists, and crane coordination are supported when needed.</li>
-                                            <li>Debris removal and careful protection help preserve the interior integrity of new or remodeled homes.</li>
-                                        </ul>
-                                    </div>
-                                </section>
-                            </div>
+                                        <p>Crews release inventory, sequence the load, place furniture and rugs, hang art, coordinate hoists, and remove debris.</p>
+                                    </section>
+                                </div>
+                                <div class="module-media-row">
+                                    <figure class="module-media-tile">
+                                        <img src="./DD_ASSETS/original_site/online-inventory.png" alt="Online inventory dashboard showing received items for a design project" loading="lazy">
+                                        <figcaption>Inventory dashboard</figcaption>
+                                    </figure>
+                                    <figure class="module-media-tile">
+                                        <img src="./DD_ASSETS/original_site/online-inventory2.png" alt="Online inventory item detail with condition photos" loading="lazy">
+                                        <figcaption>Condition photos</figcaption>
+                                    </figure>
+                                    <figure class="module-media-tile">
+                                        <img src="./DD_ASSETS/original_site/custom-installation.jpg" alt="Double Diamond installation crew carrying a large rug through a finished home" loading="lazy">
+                                        <figcaption>Installation crew</figcaption>
+                                    </figure>
+                                </div>
+                            </details>
                         </div>
                     </article>
                     <article class="service-detail" data-service-detail="moving" hidden>
@@ -371,6 +386,10 @@
                             <p class="eyebrow">Residential and commercial moves</p>
                             <h3>Professional crews for careful packing, moving, assembly, and specialty pieces.</h3>
                             <p class="service-detail-lead">From homes and condos to commercial spaces, hotels, schools, restaurants, and events, Double Diamond sends prepared crews with the equipment and judgment needed for complex mountain-town access.</p>
+                            <div class="service-detail-summary" aria-label="Moving service summary">
+                                <span><strong>Core flow</strong><em>Prepare / protect / move / set</em></span>
+                                <span><strong>Best for</strong><em>Homes, condos, offices, events, and specialty items</em></span>
+                            </div>
                             <ul class="service-detail-list">
                                 <li>Household and commercial moving, packing, and unpacking.</li>
                                 <li>Furniture disassembly, reassembly, stretch wrap, and protection.</li>
@@ -383,12 +402,38 @@
                             <img src="./DD_ASSETS/original_site/ddmoving2.jpg" alt="Double Diamond movers carefully carrying a protected item down stairs" loading="lazy">
                             <figcaption>Prepared crews for residential, commercial, and specialty moves.</figcaption>
                         </figure>
+                        <div class="service-detail-modules">
+                            <details class="service-module">
+                                <summary><span><strong>Moving workflow</strong><em>Pack, protect, transport, assemble, and place</em></span></summary>
+                                <div class="module-grid">
+                                    <section class="module-card">
+                                        <span>01</span>
+                                        <h5>Prepare</h5>
+                                        <p>Crews arrive with blankets, stretch wrap, tools, ramps, straps, and the site plan for access-sensitive moves.</p>
+                                    </section>
+                                    <section class="module-card">
+                                        <span>02</span>
+                                        <h5>Protect</h5>
+                                        <p>Furniture is wrapped, disassembled when needed, moved with the right equipment, and tracked by the foreman.</p>
+                                    </section>
+                                    <section class="module-card">
+                                        <span>03</span>
+                                        <h5>Finish</h5>
+                                        <p>Items are set, assembled, unwrapped, and placed so the space is usable when the crew leaves.</p>
+                                    </section>
+                                </div>
+                            </details>
+                        </div>
                     </article>
                     <article class="service-detail" data-service-detail="building-materials" hidden>
                         <div class="service-detail-copy">
                             <p class="eyebrow">Contractor logistics</p>
                             <h3>Receiving and delivery support for windows, cabinets, flooring, and project materials.</h3>
                             <p class="service-detail-lead">Contractors can route high-value or bulky materials to Double Diamond for organized receiving, warehousing, and staged delivery so crews are not stuck waiting on freight or crowded by early arrivals.</p>
+                            <div class="service-detail-summary" aria-label="Building material service summary">
+                                <span><strong>Core flow</strong><em>Receive / warehouse / stage / deliver</em></span>
+                                <span><strong>Best for</strong><em>Windows, cabinets, flooring, fixtures, and finish materials</em></span>
+                            </div>
                             <ul class="service-detail-list">
                                 <li>Receiving for windows, cabinets, flooring, fixtures, and finish materials.</li>
                                 <li>Short-term warehousing until the site is ready for installation.</li>
@@ -401,12 +446,38 @@
                             <img src="./DD_ASSETS/original_site/buildingmaterial4.jpg" alt="Forklift moving crated building materials for delivery" loading="lazy">
                             <figcaption>Receiving and staging for contractor project materials.</figcaption>
                         </figure>
+                        <div class="service-detail-modules">
+                            <details class="service-module">
+                                <summary><span><strong>Contractor staging workflow</strong><em>Keep materials protected until the site is ready</em></span></summary>
+                                <div class="module-grid">
+                                    <section class="module-card">
+                                        <span>01</span>
+                                        <h5>Receive</h5>
+                                        <p>Freight is accepted at the warehouse so crews are not waiting on deliveries at active jobsites.</p>
+                                    </section>
+                                    <section class="module-card">
+                                        <span>02</span>
+                                        <h5>Stage</h5>
+                                        <p>Materials are grouped by project and held until the correct phase of work is ready.</p>
+                                    </section>
+                                    <section class="module-card">
+                                        <span>03</span>
+                                        <h5>Deliver</h5>
+                                        <p>Scheduled releases help reduce site congestion and keep contractor timelines moving.</p>
+                                    </section>
+                                </div>
+                            </details>
+                        </div>
                     </article>
                     <article class="service-detail" data-service-detail="art-handling" hidden>
                         <div class="service-detail-copy">
                             <p class="eyebrow">Art handling</p>
                             <h3>Careful handling for single works, full collections, exhibits, crating, and installation.</h3>
                             <p class="service-detail-lead">The team supports collectors, designers, galleries, and homeowners with the calm, documented handling that art and fragile objects need from pickup through placement.</p>
+                            <div class="service-detail-summary" aria-label="Art handling service summary">
+                                <span><strong>Core flow</strong><em>Receive / crate / store / install</em></span>
+                                <span><strong>Best for</strong><em>Single works, full collections, exhibits, and fragile objects</em></span>
+                            </div>
                             <ul class="service-detail-list">
                                 <li>Single pieces, complete collections, exhibits, and gallery-scale projects.</li>
                                 <li>Warehouse receiving and secure temperature-controlled storage.</li>
@@ -419,6 +490,28 @@
                             <img src="./DD_ASSETS/original_site/arthandling2.jpg" alt="Double Diamond crew positioning a large protected artwork" loading="lazy">
                             <figcaption>Collection-scale handling, crating, and installation support.</figcaption>
                         </figure>
+                        <div class="service-detail-modules">
+                            <details class="service-module">
+                                <summary><span><strong>Collection handling workflow</strong><em>Condition-aware support from pickup through placement</em></span></summary>
+                                <div class="module-grid">
+                                    <section class="module-card">
+                                        <span>01</span>
+                                        <h5>Document</h5>
+                                        <p>Objects are handled with attention to condition, packaging, site constraints, and storage needs.</p>
+                                    </section>
+                                    <section class="module-card">
+                                        <span>02</span>
+                                        <h5>Protect</h5>
+                                        <p>Crating, packing, warehouse receiving, and temperature-controlled storage support fragile works.</p>
+                                    </section>
+                                    <section class="module-card">
+                                        <span>03</span>
+                                        <h5>Place</h5>
+                                        <p>Install support covers homes, galleries, designers, oversized pieces, and collection-scale projects.</p>
+                                    </section>
+                                </div>
+                            </details>
+                        </div>
                     </article>
                 </div>
             </div>
@@ -750,6 +843,6 @@
     
     <!-- JAVASCRIPT IMPORT -->
     <script src="assets/js/app.js"></script>
-    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/animations.js?v=20260615h"></script>
 </body>
 </html>
