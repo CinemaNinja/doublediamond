@@ -3,10 +3,6 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/customer-login",
-      "destination": "/login.html"
-    },
-    {
       "source": "/portal",
       "destination": "/portal.html"
     },
@@ -16,6 +12,11 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/customer-login",
+      "destination": "https://accounts.doublediamondmoving.com/",
+      "permanent": false
+    },
     {
       "source": "/interior-designer-services",
       "destination": "/#services",

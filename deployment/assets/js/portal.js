@@ -101,7 +101,7 @@
         elements.signOut.addEventListener('click', () => {
             sessionStorage.removeItem(portalUrlKey);
             sessionStorage.removeItem(portalProfileKey);
-            window.location.assign('login.html');
+            window.location.assign(`${portalHost}/`);
         });
 
         if (!portalUrl) {

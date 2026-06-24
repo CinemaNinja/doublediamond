@@ -30,7 +30,6 @@ The package includes small static redirect folders for the existing live-site cl
 
 ```text
 /home/
-/customer-login/
 /portal/
 /interior-designer-services/
 /storage/
@@ -45,7 +44,7 @@ If the existing server already handles redirects or rewrites, these equivalent m
 
 ```text
 /home -> /index.html
-/customer-login -> /login.html
+/customer-login -> https://accounts.doublediamondmoving.com/
 /portal -> /portal.html
 /interior-designer-services -> /#services
 /storage -> /#services
