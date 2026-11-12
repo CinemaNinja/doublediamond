@@ -75,7 +75,7 @@
     <!-- The Variables file controls colors, fonts, and spacing -->
     <link rel="stylesheet" href="assets/css/variables.css?v=20260508">
     <!-- The Styles file contains layout and components that use the variables -->
-    <link rel="stylesheet" href="assets/css/styles.css?v=20260616d">
+    <link rel="stylesheet" href="assets/css/styles.css?v=20261112a">
     <!-- Advanced Cinematic Animations -->
     <link rel="stylesheet" href="assets/css/animations.css?v=20260508">
 </head>
@@ -151,8 +151,8 @@
             <div class="hero-video-wrapper">
                 <!-- HERO VIDEO ASSET -->
                 <!-- Designer Note: Update the 'src' value below to change the background video -->
-                <video class="hero-video" autoplay loop muted playsinline preload="metadata" poster="./DD_ASSETS/hero_media/dd-all-warehouse-hero.poster.jpg">
-                    <source src="./DD_ASSETS/hero_media/dd-all-warehouse-hero.web.mp4" type="video/mp4">
+                <video class="hero-video" autoplay loop muted playsinline preload="metadata" poster="./DD_ASSETS/hero_media/dd-main-hero.poster.jpg">
+                    <source src="./DD_ASSETS/hero_media/dd-main-hero.web.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -578,10 +578,6 @@
                         <div class="expert-content"><h3>Katy</h3><p class="expert-title">Warehouse Admin</p></div>
                     </div>
                     <div class="expert-card reveal">
-                        <div class="expert-image-wrapper"><img src="./DD_ASSETS/headshots/Arsene.jpg" alt="Arsene" loading="lazy"></div>
-                        <div class="expert-content"><h3>Arsene</h3><p class="expert-title">Warehouse Receiving</p></div>
-                    </div>
-                    <div class="expert-card reveal">
                         <div class="expert-image-wrapper"><img src="./DD_ASSETS/headshots/Serjio.jpg" alt="Serjio" loading="lazy"></div>
                         <div class="expert-content"><h3>Serjio</h3><p class="expert-title">Warehouse Operations</p></div>
                     </div>
@@ -616,17 +612,40 @@
                         <h2 class="outline-text" aria-hidden="true">Media</h2>
                         <h2 id="media-title" class="fill-text">Media</h2>
                     </div>
-                    <p style="text-align: center; max-width: 600px; margin: 0 auto; color: var(--text-secondary);">check out our commercial!</p>
+                    <p class="video-section-lead">Ullrhof in Snowmass, and the Double Diamond commercial.</p>
                 </div>
 
-                <div class="commercial-theater reveal">
-                    <video class="commercial-video" controls playsinline preload="metadata" poster="./DD_ASSETS/commercial.poster.jpg">
-                        <source src="./DD_ASSETS/commercial.web.mp4" type="video/mp4">
-                        <source src="./DD_ASSETS/commercial.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="commercial-vignette"></div>
-                </div>
+                <figure class="video-feature reveal">
+                    <div class="video-frame">
+                        <iframe
+                            class="video-embed"
+                            src="https://www.youtube-nocookie.com/embed/AOrNr0sMJBs?rel=0"
+                            title="Double Diamond Moving Company Ullrhof Snowmass"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                            loading="lazy"></iframe>
+                    </div>
+                    <figcaption class="video-caption">
+                        <p class="eyebrow">Featured</p>
+                        <h3>Ullrhof, Snowmass</h3>
+                    </figcaption>
+                </figure>
+
+                <figure class="video-supporting reveal">
+                    <div class="commercial-theater">
+                        <video class="commercial-video" controls playsinline preload="metadata" poster="./DD_ASSETS/commercial.poster.jpg">
+                            <source src="./DD_ASSETS/commercial.web.mp4" type="video/mp4">
+                            <source src="./DD_ASSETS/commercial.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="commercial-vignette"></div>
+                    </div>
+                    <figcaption class="video-caption">
+                        <p class="eyebrow">Commercial</p>
+                        <h3>Double Diamond</h3>
+                    </figcaption>
+                </figure>
             </div>
         </section>
 
